@@ -1,0 +1,1698 @@
+openapi: "3.0.1"
+info:
+  version: 1.0.0
+  title: Agrology Public API v2
+servers:
+- url: https://api.agrology.ag/v2
+paths:
+  /feedback:
+    post:
+      summary: Submit Feedback to Agrology
+      security:
+      - publicApiAuthorizer: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedbackSubmission'
+      responses:
+        "201":
+          description: "201 Created response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Feedback
+  /access:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - User
+  /metrics:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Metrics
+  /sites:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Topology
+  /nodes:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Topology
+  /geojson/sites:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Topology
+  /geojson/site/{siteID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Topology
+  /geojson/customer/{customerID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "customerID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+      - Topology
+  /historical/ground-truth/metrics:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Metrics
+        - Ground Truth
+        - Historical
+        - Ground Truth / Historical
+  /historical/ground-truth/device-types:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Ground Truth
+        - Historical
+        - Ground Truth / Historical
+  /historical/ground-truth/{siteID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Ground Truth
+        - Historical
+        - Ground Truth / Historical
+  /historical/ground-truth/{siteID}/node/{nodeID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Ground Truth
+        - Historical
+        - Ground Truth / Historical
+  /historical/ground-truth/{siteID}/block/{blockID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "blockID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Ground Truth
+        - Historical
+        - Ground Truth / Historical
+  /historical/ground-truth/{siteID}/device/{deviceID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "deviceID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Ground Truth
+        - Historical
+        - Ground Truth / Historical
+  /historical/ground-truth/{siteID}/devices:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Ground Truth
+        - Historical
+        - Ground Truth / Historical
+  /historical/weather/metrics:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Metrics
+        - Weather
+        - Historical
+        - Weather / Historical
+  /historical/weather/{siteID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Weather
+        - Historical
+        - Weather / Historical
+  /historical/weather/{siteID}/node/{nodeID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Weather
+        - Historical
+        - Weather / Historical
+  /historical/weather/{siteID}/block/{blockID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "blockID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Weather
+        - Historical
+        - Weather / Historical
+  /predictions/weather/metrics:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Metrics
+        - Weather
+        - Predictions
+        - Weather / Predictions
+  /predictions/weather/{siteID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Weather
+        - Predictions
+        - Weather / Predictions
+  /predictions/weather/{siteID}/node/{nodeID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Weather
+        - Predictions
+        - Weather / Predictions
+  /predictions/weather/{siteID}/block/{blockID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "blockID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Weather
+        - Predictions
+        - Weather / Predictions
+  /predictions/weather/{siteID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Weather
+        - Predictions
+        - Weather / Predictions
+  /predictions/weather/{siteID}/node/{nodeID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Weather
+        - Predictions
+        - Weather / Predictions
+  /predictions/weather/{siteID}/block/{blockID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "blockID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Weather
+        - Predictions
+        - Weather / Predictions
+  /predictions/microclimate/metrics:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Metrics
+        - Microclimate
+        - Predictions
+        - Microclimate / Predictions
+  /predictions/microclimate/{siteID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Microclimate
+        - Predictions
+        - Microclimate / Predictions
+  /predictions/microclimate/{siteID}/node/{nodeID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Microclimate
+        - Predictions
+        - Microclimate / Predictions
+  /predictions/microclimate/{siteID}/block/{blockID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "blockID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Microclimate
+        - Predictions
+        - Microclimate / Predictions
+  /predictions/microclimate/{siteID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Microclimate
+        - Predictions
+        - Microclimate / Predictions
+  /predictions/microclimate/{siteID}/node/{nodeID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Microclimate
+        - Predictions
+        - Microclimate / Predictions
+  /predictions/microclimate/{siteID}/block/{blockID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "blockID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Microclimate
+        - Predictions
+        - Microclimate / Predictions
+  /predictions/pest-disease/metrics:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Metrics
+        - Pest & Disease
+        - Predictions
+        - Pest & Disease / Predictions
+  /predictions/pest-disease/{siteID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Pest & Disease
+        - Predictions
+        - Pest & Disease / Predictions
+  /predictions/pest-disease/{siteID}/node/{nodeID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Pest & Disease
+        - Predictions
+        - Pest & Disease / Predictions
+  /predictions/pest-disease/{siteID}/block/{blockID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "blockID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Pest & Disease
+        - Predictions
+        - Pest & Disease / Predictions
+  /predictions/pest-disease/{siteID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Pest & Disease
+        - Predictions
+        - Pest & Disease / Predictions
+  /predictions/pest-disease/{siteID}/node/{nodeID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Pest & Disease
+        - Predictions
+        - Pest & Disease / Predictions
+  /predictions/pest-disease/{siteID}/block/{blockID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "blockID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Pest & Disease
+        - Predictions
+        - Pest & Disease / Predictions
+  /summaries/microclimate/customer/{customerID}:
+    get:
+      parameters:
+      - name: customerID
+        in: path
+        required: true
+        description: The CustomerID value of the ReportDefinition
+        schema:
+          type: string
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Summary Data
+        - Microclimate
+        - Microclimate / Summary Data
+  /synthetics/microclimate/metrics:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Metrics
+        - Synthetics
+        - Microclimate
+        - Microclimate / Synthetics
+  /synthetics/microclimate/{siteID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Synthetics
+        - Microclimate
+        - Microclimate / Synthetics
+  /synthetics/microclimate/{siteID}/node/{nodeID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Synthetics
+        - Microclimate
+        - Microclimate / Synthetics
+  /synthetics/microclimate/{siteID}/block/{blockID}/{timeRange}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "blockID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "timeRange"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Synthetics
+        - Microclimate
+        - Microclimate / Synthetics
+  /phenostages/{siteID}/node/{nodeID}:
+    post:
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phase:
+                  type: string
+                  description: The phase of the phenostage event
+                date:
+                  type: string
+                  description: The date of the phenostage event in YYYY-MM-DD
+              required:
+               - name
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "204":
+          description: "204 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Phenostages
+  /phenostages/{siteID}/node/{nodeID}/vintage/{vintage}:
+    get:
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "vintage"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      security:
+      - publicApiAuthorizer: []
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Phenostages
+  /phenostages/{siteID}/node/{nodeID}/vintage/{vintage}/phase/{phase}:
+    delete:
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "nodeID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "vintage"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "phase"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        200:
+          description: result of the deleteReportDefinition operation
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Phenostages
+  /alerts/customer/{customerID}:
+    get:
+      summary: Lists alerts for a given customer
+      tags:
+        - Alerts
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The id of the Customer for which to retrieve alerts
+          schema:
+            type: string
+      responses:
+        200:
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+      - publicApiAuthorizer: []
+  /fileserver/site/{siteID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "siteID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "file"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "redirect"
+        in: "query"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Files
+  /fileserver/customer/{customerID}:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "customerID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      - name: "file"
+        in: "query"
+        required: true
+        schema:
+          type: "string"
+      - name: "redirect"
+        in: "query"
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Files
+  /report-definitions/{customerID}/{id}:
+    put:
+      summary: Update a specific ReportDefinition
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the ReportDefinition to update
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the ReportDefinition to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        200:
+          description: result of the updateReportDefinition operation
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+        - Reports
+    delete:
+      summary: Delete a specific ReportDefinition
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the ReportDefinition to delete
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the ReportDefinition to delete
+          schema:
+            type: string
+      responses:
+        200:
+          description: result of the deleteReportDefinition operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Reports
+  /report-definitions/customer/{customerID}:
+    get:
+      summary: Lists ReportDefinitions whose CustomerID matches the provided value
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+      responses:
+        200:
+          description: An array of ReportDefinitions
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportDefinitions"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Reports
+    post:
+      summary: Create a new ReportDefinition
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        201:
+          description: result of the createReportDefinition operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Reports
+  /report-runs/{customerID}/{id}:
+    get:
+      summary: Get info about a specific ReportRun
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the ReportRun to retrieve
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the ReportRun to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: ReportRun Object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportRun"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Reports
+  /report-runs/customer/{customerID}:
+    get:
+      summary: Lists ReportRuns whose CustomerID matches the provided value
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+      responses:
+        200:
+          description: An array of ReportRuns
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportRuns"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Reports
+    post:
+      summary: Create a new ReportRun
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        201:
+          description: result of the createReportRun operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Reports
+  /report-runs/report-definition-id/{customerID}/{reportDefinitionID}:
+    get:
+      summary: Lists ReportRuns whose ReportDefinitionID matches the provided value
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+        - name: reportDefinitionID
+          in: path
+          required: true
+          description: The ReportDefinitionID value used to filter the list
+          schema:
+            type: string
+      responses:
+        200:
+          description: An array of ReportRuns
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ReportRuns"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Reports
+  /library-charts/{customerID}/{id}:
+    get:
+      summary: Get info about a specific LibraryChart
+      operationId: showLibraryChart
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the LibraryChart to retrieve
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the LibraryChart to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: LibraryChart Object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LibraryChart"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Charts
+    put:
+      summary: Update a specific LibraryChart
+      operationId: updateLibraryChart
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the LibraryChart to update
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the LibraryChart to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        200:
+          description: result of the updateLibraryChart operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Charts
+    delete:
+      summary: Delete a specific LibraryChart
+      operationId: deleteLibraryChart
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the LibraryChart to delete
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the LibraryChart to delete
+          schema:
+            type: string
+      responses:
+        200:
+          description: result of the deleteLibraryChart operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Charts
+  /library-charts/customer/{customerID}:
+    get:
+      summary: Lists LibraryCharts whose CustomerID matches the provided value
+      operationId: listLibraryChartsByCustomerID
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+      responses:
+        200:
+          description: An array of LibraryCharts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LibraryCharts"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Charts
+    post:
+      summary: Create a new LibraryChart
+      operationId: createLibraryChart
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        201:
+          description: result of the createLibraryChart operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Charts
+components:
+  schemas:
+    ReportRun:
+      required:
+        - customerID
+        - id
+      properties:
+        customerID:
+          type: string
+        id:
+          type: string
+        ts:
+          type: integer
+          format: int64
+        status:
+          type: string
+        reportDefinitionID:
+          type: string
+        executionTime:
+          type: integer
+          format: int64
+    ReportRuns:
+      type: array
+      items:
+        $ref: "#/components/schemas/ReportRun"
+    ReportDefinition:
+      required:
+        - customerID
+        - id
+      properties:
+        id:
+          type: string
+        customerID:
+          type: string
+        aggregate:
+          type: string
+        entryType:
+          type: string
+        eventBridgeArn:
+          type: string
+        offsetSecs:
+          type: integer
+          format: int64
+        scope:
+          type: string
+        targetID:
+          type: string
+        templateID:
+          type: string
+    ReportDefinitions:
+      type: array
+      items:
+        $ref: "#/components/schemas/ReportDefinition"
+    LibraryChart:
+      required:
+        - customerID
+        - id
+      properties:
+        id:
+          type: string
+        customerID:
+          type: string
+        description:
+          type: string
+        folder:
+          type: string
+        definition:
+          type: string
+    LibraryCharts:
+      type: array
+      items:
+        $ref: "#/components/schemas/LibraryChart"
+    FeedbackSubmission:
+      required:
+        - customer
+        - feedbackType
+        - remarks
+        - client
+        - clientVersion
+      properties:
+        customer:
+          type: string
+          description: the uuid of the active/selected customer in the client
+        client:
+          type: string
+          description: the name of the apg/client (e.g., Agrology iOS) from which the feedback is being sent
+        clientVersion:
+          type: string
+          description: the semantic version of the client from which the feedback is being sent
+        appLocation:
+          type: string
+          description: a URI or text description representing the location in the app where the feedback form was overlaid
+        feedbackType:
+          type: string
+          enum: ["feature", "bug", "other"]
+          description: the categorizable subject for the feedback
+        remarks:
+          type: string
+          description: the actual feedback entered by the user in freeform text
+        wantsFollowUp:
+          type: boolean
+          description: set to true if the user would like someone to contact them about their feedback
+        isTestMessage:
+          type: boolean
+          description: set to true if the feedback is a test submission that the customer success team can ignore
+  securitySchemes:
+    publicApiAuthorizer:
+      #
+      # For API Key Authentication:
+      # type: apiKey
+      # in: header
+      # name: x-api-key
+      #
+      # For Bearer Token Authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
