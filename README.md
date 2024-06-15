@@ -562,7 +562,7 @@ The URL for alerts is <https://api.agrology.ag/v2/alerts/customer/{customerID}>
 ```json
 {
   "aps": {
-    "alert": "Alerts for Duckhorn Vineyards"
+    "alert": "Alerts for Example Vineyards"
   },
   "alerts": [
     {
