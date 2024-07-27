@@ -1151,6 +1151,8 @@ paths:
         required: true
         schema:
           type: "string"
+      security:
+      - publicApiAuthorizer: []
       responses:
         200:
           description: result of the deleteReportDefinition operation
@@ -1259,6 +1261,8 @@ paths:
           application/json:
             schema:
               type: string
+      security:
+      - publicApiAuthorizer: []
       responses:
         200:
           description: result of the updateReportDefinition operation
