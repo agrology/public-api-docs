@@ -47,17 +47,10 @@ A user can make a request to <https://api.agrology.ag/v2/access> with their Bear
           "id": "abc391cd-b8cd-4e47-b7ab-8e91f9ebbe6e",
           "displayName": "Device Data Testing",
           "role": "admin",
-          "blocks": [
-            {
-              "id": "ff9d2c1b-7bf2-4a65-9944-a20f3e719810",
-              "displayName": "Home"
-            }
-          ],
           "nodes": [
             {
               "id": "dc59edcd-1787-488a-b6f1-5632eb132667",
-              "displayName": "Control",
-              "block": "ff9d2c1b-7bf2-4a65-9944-a20f3e719810"
+              "displayName": "Control"
             },
             {
               "id": "9f04f006-d3ff-489f-b234-b77510ae13c0",
@@ -65,8 +58,7 @@ A user can make a request to <https://api.agrology.ag/v2/access> with their Bear
             },
             {
               "id": "2d58b570-a3b5-47fb-867f-5152ba2be73c",
-              "displayName": "Test Bench",
-              "block": "ff9d2c1b-7bf2-4a65-9944-a20f3e719810"
+              "displayName": "Test Bench"
             }
           ]
         }
@@ -76,7 +68,7 @@ A user can make a request to <https://api.agrology.ag/v2/access> with their Bear
 }
 ```
 
-Note that older Customers and Sites use a slug-style ID, while newer ones use UUIDs. All Blocks and Nodes are identified by UUIDs. This documentation does not describe the relationship between Customers, Sites, Nodes and Blocks. Contact Agrology for additional information.
+Note that older Customers and Sites use a slug-style ID, while newer ones use UUIDs. All Nodes are identified by UUIDs. This documentation does not describe the relationship between Customers, Sites, Nodes. Contact Agrology for additional information.
 
 ## Accessing Data via GeoJSON
 
@@ -218,7 +210,7 @@ An epoch timestamp is a 10-digit number representing the number of seconds since
 
 ## Data Filtering
 
-By default, the API response will include all Devices and Metrics that are applicable to the provided Site, optional Node/Block/Device, and Time Range. You can further filter the results by providing optional URL Parameters to filter by Device Type and/or Metric Name.
+By default, the API response will include all Devices and Metrics that are applicable to the provided Site, optional Node/Device, and Time Range. You can further filter the results by providing optional URL Parameters to filter by Device Type and/or Metric Name.
 
 ### Filtering by Device Type
 
@@ -273,13 +265,11 @@ The list of possible metrics returned in Historical Ground-Truth data is availab
 
 ### Retrieve Historical Ground-Truth Data
 
-Historical Ground-Truth data can be accessed by Site, Node, Block or Device. A Site ID and Time Range is required for all scopes.
+Historical Ground-Truth data can be accessed by Site, Node or Device. A Site ID and Time Range is required for all scopes.
 
 By Site: https://api.agrology.ag/v2/historical/ground-truth/{siteID}/{timeRange}
 
 By Node: https://api.agrology.ag/v2/historical/ground-truth/{siteID}/node/{nodeID}/{timeRange}
-
-By Block: https://api.agrology.ag/v2/historical/ground-truth/{siteID}/block/{blockID}/{timeRange}
 
 By Device: https://api.agrology.ag/v2/historical/ground-truth/{siteID}/device/{deviceID}/{timeRange}
 
@@ -408,13 +398,11 @@ The list of possible metrics returned in Historical Weather Service data is avai
 
 ### Retrieve Historical Weather Service Data
 
-Historical Weather Service data can be accessed by Site, Node, Block or Device. A Site ID and Time Range is required for all scopes.
+Historical Weather Service data can be accessed by Site, Node or Device. A Site ID and Time Range is required for all scopes.
 
 By Site: https://api.agrology.ag/v2/historical/weather/{siteID}/{timeRange}
 
 By Node: https://api.agrology.ag/v2/historical/weather/{siteID}/node/{nodeID}/{timeRange}
-
-By Block: https://api.agrology.ag/v2/historical/weather/{siteID}/block/{blockID}/{timeRange}
 
 ### Historical Weather Service Data Format
 
@@ -439,13 +427,11 @@ The list of possible metrics returned in Synthetic Microclimate data is availabl
 
 ### Retrieve Synthetic Microclimate Data
 
-Historical Weather Service data can be accessed by Site, Node, Block or Device. A Site ID and Time Range is required for all scopes.
+Historical Weather Service data can be accessed by Site, Node or Device. A Site ID and Time Range is required for all scopes.
 
 By Site: https://api.agrology.ag/v2/synthetics/microclimate/{siteID}/{timeRange}
 
 By Node: https://api.agrology.ag/v2/synthetics/microclimate/{siteID}/node/{nodeID}/{timeRange}
-
-By Block: https://api.agrology.ag/v2/synthetics/microclimate/{siteID}/block/{blockID}/{timeRange}
 
 
 ### Synthetic Microclimate Data Format
@@ -483,7 +469,7 @@ The list of possible metrics returned in Microclimate Predictions data is availa
 
 ### Retrieve Microclimate Predictions Data
 
-Microclimate Predictions data can be accessed by Site, Node, Block or Device. Predictions are available for up to 4 days in advance. A Site ID is required for all scopes. The Time Range can be omitted and will assume a time of Now and return all future predictions.
+Microclimate Predictions data can be accessed by Site, Node or Device. Predictions are available for up to 4 days in advance. A Site ID is required for all scopes. The Time Range can be omitted and will assume a time of Now and return all future predictions.
 
 By Site: https://api.agrology.ag/v2/predictions/microclimate/{siteID}/{timeRange}
 
@@ -492,10 +478,6 @@ By Site (no time range): https://api.agrology.ag/v2/predictions/microclimate/{si
 By Node: https://api.agrology.ag/v2/predictions/microclimate/{siteID}/node/{nodeID}/{timeRange}
 
 By Node (no time range): https://api.agrology.ag/v2/predictions/microclimate/{siteID}/node/{nodeID}
-
-By Block: https://api.agrology.ag/v2/predictions/microclimate/{siteID}/block/{blockID}/{timeRange}
-
-By Block (no time range): https://api.agrology.ag/v2/predictions/microclimate/{siteID}/block/{blockID}
 
 ### Microclimate Predictions Data Format
 
@@ -533,7 +515,7 @@ The list of possible metrics returned in Weather Service Predictions data is ava
 
 ### Retrieve Weather Service Predictions Data
 
-Weather Service Predictions data can be accessed by Site, Node, Block or Device. Predictions are available for up to 4 days in advance. A Site ID is required for all scopes. The Time Range can be omitted and will assume a time of Now and return all future predictions.
+Weather Service Predictions data can be accessed by Site, Node or Device. Predictions are available for up to 4 days in advance. A Site ID is required for all scopes. The Time Range can be omitted and will assume a time of Now and return all future predictions.
 
 By Site: https://api.agrology.ag/v2/predictions/weather/{siteID}/{timeRange}
 
@@ -542,10 +524,6 @@ By Site (no time range): https://api.agrology.ag/v2/predictions/weather/{siteID}
 By Node: https://api.agrology.ag/v2/predictions/weather/{siteID}/node/{nodeID}/{timeRange}
 
 By Node (no time range): https://api.agrology.ag/v2/predictions/weather/{siteID}/node/{nodeID}
-
-By Block: https://api.agrology.ag/v2/predictions/weather/{siteID}/block/{blockID}/{timeRange}
-
-By Block (no time range): https://api.agrology.ag/v2/predictions/weather/{siteID}/block/{blockID}
 
 ### Weather Service Predictions Data Format
 

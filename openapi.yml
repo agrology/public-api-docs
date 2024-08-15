@@ -216,37 +216,6 @@ paths:
         - Ground Truth
         - Historical
         - Ground Truth / Historical
-  /historical/ground-truth/{siteID}/block/{blockID}/{timeRange}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "blockID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "timeRange"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Ground Truth
-        - Historical
-        - Ground Truth / Historical
   /historical/ground-truth/{siteID}/device/{deviceID}/{timeRange}:
     get:
       security:
@@ -372,37 +341,6 @@ paths:
         - Weather
         - Historical
         - Weather / Historical
-  /historical/weather/{siteID}/block/{blockID}/{timeRange}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "blockID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "timeRange"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Weather
-        - Historical
-        - Weather / Historical
   /predictions/weather/metrics:
     get:
       security:
@@ -466,32 +404,6 @@ paths:
         - Weather
         - Predictions
         - Weather / Predictions
-  /predictions/weather/{siteID}/block/{blockID}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "blockID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Weather
-        - Predictions
-        - Weather / Predictions
   /predictions/weather/{siteID}/{timeRange}:
     get:
       security:
@@ -529,37 +441,6 @@ paths:
         schema:
           type: "string"
       - name: "nodeID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "timeRange"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Weather
-        - Predictions
-        - Weather / Predictions
-  /predictions/weather/{siteID}/block/{blockID}/{timeRange}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "blockID"
         in: "path"
         required: true
         schema:
@@ -643,32 +524,6 @@ paths:
         - Microclimate
         - Predictions
         - Microclimate / Predictions
-  /predictions/microclimate/{siteID}/block/{blockID}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "blockID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Microclimate
-        - Predictions
-        - Microclimate / Predictions
   /predictions/microclimate/{siteID}/{timeRange}:
     get:
       security:
@@ -706,37 +561,6 @@ paths:
         schema:
           type: "string"
       - name: "nodeID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "timeRange"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Microclimate
-        - Predictions
-        - Microclimate / Predictions
-  /predictions/microclimate/{siteID}/block/{blockID}/{timeRange}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "blockID"
         in: "path"
         required: true
         schema:
@@ -820,32 +644,6 @@ paths:
         - Pest & Disease
         - Predictions
         - Pest & Disease / Predictions
-  /predictions/pest-disease/{siteID}/block/{blockID}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "blockID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Pest & Disease
-        - Predictions
-        - Pest & Disease / Predictions
   /predictions/pest-disease/{siteID}/{timeRange}:
     get:
       security:
@@ -883,37 +681,6 @@ paths:
         schema:
           type: "string"
       - name: "nodeID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "timeRange"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Pest & Disease
-        - Predictions
-        - Pest & Disease / Predictions
-  /predictions/pest-disease/{siteID}/block/{blockID}/{timeRange}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "blockID"
         in: "path"
         required: true
         schema:
@@ -1009,37 +776,6 @@ paths:
         schema:
           type: "string"
       - name: "nodeID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "timeRange"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Synthetics
-        - Microclimate
-        - Microclimate / Synthetics
-  /synthetics/microclimate/{siteID}/block/{blockID}/{timeRange}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "blockID"
         in: "path"
         required: true
         schema:
