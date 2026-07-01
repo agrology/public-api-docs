@@ -581,126 +581,6 @@ paths:
         - Microclimate
         - Predictions
         - Microclimate / Predictions
-  /predictions/pest-disease/metrics:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Metrics
-        - Pest & Disease
-        - Predictions
-        - Pest & Disease / Predictions
-  /predictions/pest-disease/{siteID}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Pest & Disease
-        - Predictions
-        - Pest & Disease / Predictions
-  /predictions/pest-disease/{siteID}/node/{nodeID}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "nodeID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Pest & Disease
-        - Predictions
-        - Pest & Disease / Predictions
-  /predictions/pest-disease/{siteID}/{timeRange}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "timeRange"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Pest & Disease
-        - Predictions
-        - Pest & Disease / Predictions
-  /predictions/pest-disease/{siteID}/node/{nodeID}/{timeRange}:
-    get:
-      security:
-      - publicApiAuthorizer: []
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "nodeID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "timeRange"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Pest & Disease
-        - Predictions
-        - Pest & Disease / Predictions
   /summaries/microclimate/customer/{customerID}:
     get:
       parameters:
@@ -796,108 +676,6 @@ paths:
         - Synthetics
         - Microclimate
         - Microclimate / Synthetics
-  /phenostages/{siteID}/node/{nodeID}:
-    post:
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "nodeID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                phase:
-                  type: string
-                  description: The phase of the phenostage event
-                date:
-                  type: string
-                  description: The date of the phenostage event in YYYY-MM-DD
-              required:
-               - name
-      security:
-      - publicApiAuthorizer: []
-      responses:
-        "204":
-          description: "204 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Phenostages
-  /phenostages/{siteID}/node/{nodeID}/vintage/{vintage}:
-    get:
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "nodeID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "vintage"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      security:
-      - publicApiAuthorizer: []
-      responses:
-        "200":
-          description: "200 response"
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Phenostages
-  /phenostages/{siteID}/node/{nodeID}/vintage/{vintage}/phase/{phase}:
-    delete:
-      parameters:
-      - name: "siteID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "nodeID"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "vintage"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      - name: "phase"
-        in: "path"
-        required: true
-        schema:
-          type: "string"
-      security:
-      - publicApiAuthorizer: []
-      responses:
-        200:
-          description: result of the deleteReportDefinition operation
-          content:
-            application/json:
-              schema:
-                type: string
-      tags:
-        - Phenostages
   /alerts/customer/{customerID}:
     get:
       summary: Lists alerts for a given customer
@@ -911,7 +689,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        "200":
           description: Expected response to a valid request
           content:
             application/json:
@@ -944,7 +722,7 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/PreSignedURLResponse"
       tags:
         - Files
   /fileserver/customer/{customerID}:
@@ -972,7 +750,26 @@ paths:
           content:
             application/json:
               schema:
-                type: string
+                $ref: "#/components/schemas/PreSignedURLResponse"
+      tags:
+        - Files
+  /fileserver/customer/{customerID}/shared:
+    get:
+      security:
+      - publicApiAuthorizer: []
+      parameters:
+      - name: "customerID"
+        in: "path"
+        required: true
+        schema:
+          type: "string"
+      responses:
+        "200":
+          description: List of Customer Files Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerFiles"
       tags:
         - Files
   /report-definitions/{customerID}/{id}:
@@ -1000,7 +797,7 @@ paths:
       security:
       - publicApiAuthorizer: []
       responses:
-        200:
+        "200":
           description: result of the updateReportDefinition operation
           content:
             application/json:
@@ -1024,7 +821,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        "200":
           description: result of the deleteReportDefinition operation
           content:
             application/json:
@@ -1045,7 +842,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        "200":
           description: An array of ReportDefinitions
           content:
             application/json:
@@ -1071,7 +868,7 @@ paths:
             schema:
               type: string
       responses:
-        201:
+        "201":
           description: result of the createReportDefinition operation
           content:
             application/json:
@@ -1098,7 +895,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        "200":
           description: ReportRun Object
           content:
             application/json:
@@ -1119,7 +916,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        "200":
           description: An array of ReportRuns
           content:
             application/json:
@@ -1145,7 +942,7 @@ paths:
             schema:
               type: string
       responses:
-        201:
+        "201":
           description: result of the createReportRun operation
           content:
             application/json:
@@ -1172,7 +969,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        "200":
           description: An array of ReportRuns
           content:
             application/json:
@@ -1200,7 +997,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        "200":
           description: LibraryChart Object
           content:
             application/json:
@@ -1233,7 +1030,7 @@ paths:
             schema:
               type: string
       responses:
-        200:
+        "200":
           description: result of the updateLibraryChart operation
           content:
             application/json:
@@ -1260,7 +1057,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        "200":
           description: result of the deleteLibraryChart operation
           content:
             application/json:
@@ -1282,7 +1079,7 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        "200":
           description: An array of LibraryCharts
           content:
             application/json:
@@ -1309,7 +1106,7 @@ paths:
             schema:
               type: string
       responses:
-        201:
+        "201":
           description: result of the createLibraryChart operation
           content:
             application/json:
@@ -1319,6 +1116,1241 @@ paths:
         - publicApiAuthorizer: []
       tags:
         - Charts
+  /experiments/{customerID}/{id}:
+    get:
+      summary: Get info about a specific Experiment
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the Experiment to retrieve
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the Experiment to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Experiment Object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Experiment"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    put:
+      summary: Update a specific Experiment
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the Experiment to update
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the Experiment to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: result of the updateExperiment operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    delete:
+      summary: Delete a specific Experiment
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the Experiment to delete
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the Experiment to delete
+          schema:
+            type: string
+      responses:
+        "200":
+          description: result of the deleteExperiment operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/customer/{customerID}:
+    get:
+      summary: Lists Experiments whose CustomerID matches the provided value
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of Experiments
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Experiments"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    post:
+      summary: Create a new Experiment
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the new Experiment
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: result of the createExperiment operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/groups/{customerID}/{experimentID}/{id}:
+    get:
+      summary: Get info about a specific ExperimentGroup
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the ExperimentGroup to retrieve
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value of the ExperimentGroup to retrieve
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the ExperimentGroup to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ExperimentGroup Object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExperimentGroup"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    put:
+      summary: Update a specific ExperimentGroup
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the ExperimentGroup to update
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value of the ExperimentGroup to update
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the ExperimentGroup to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: result of the updateExperimentGroup operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    delete:
+      summary: Delete a specific ExperimentGroup
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the ExperimentGroup to delete
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value of the ExperimentGroup to delete
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the ExperimentGroup to delete
+          schema:
+            type: string
+      responses:
+        "200":
+          description: result of the deleteExperimentGroup operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/groups/{customerID}/{experimentID}:
+    get:
+      summary: Lists ExperimentGroups whose ExperimentID matches the provided value
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of ExperimentGroups
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExperimentGroups"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    post:
+      summary: Create a new ExperimentGroup
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the new ExperimentGroup
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value of the new ExperimentGroup
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: result of the createExperimentGroup operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/members/{customerID}/{experimentID}/{groupID}/{nodeID}:
+    get:
+      summary: Get info about a specific ExperimentMember
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the ExperimentMember to retrieve
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID parameter
+          schema:
+            type: string
+        - name: groupID
+          in: path
+          required: true
+          description: The GroupID value of the ExperimentMember to retrieve
+          schema:
+            type: string
+        - name: nodeID
+          in: path
+          required: true
+          description: The NodeID value of the ExperimentMember to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ExperimentMember Object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExperimentMember"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    post:
+      summary: Create a new ExperimentMember
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the new ExperimentMember
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID parameter
+          schema:
+            type: string
+        - name: groupID
+          in: path
+          required: true
+          description: The GroupID value of the new ExperimentMember
+          schema:
+            type: string
+        - name: nodeID
+          in: path
+          required: true
+          description: The NodeID value of the new ExperimentMember
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: result of the createExperimentMember operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    put:
+      summary: Update a specific ExperimentMember
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the ExperimentMember to update
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID parameter
+          schema:
+            type: string
+        - name: groupID
+          in: path
+          required: true
+          description: The GroupID value of the ExperimentMember to update
+          schema:
+            type: string
+        - name: nodeID
+          in: path
+          required: true
+          description: The NodeID value of the ExperimentMember to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: result of the updateExperimentMember operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    delete:
+      summary: Delete a specific ExperimentMember
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the ExperimentMember to delete
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID parameter
+          schema:
+            type: string
+        - name: groupID
+          in: path
+          required: true
+          description: The GroupID value of the ExperimentMember to delete
+          schema:
+            type: string
+        - name: nodeID
+          in: path
+          required: true
+          description: The NodeID value of the ExperimentMember to delete
+          schema:
+            type: string
+      responses:
+        "200":
+          description: result of the deleteExperimentMember operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/members/{customerID}/group-id/{groupID}:
+    get:
+      summary: Lists ExperimentMembers whose GroupID matches the provided value
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+        - name: groupID
+          in: path
+          required: true
+          description: The GroupID value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of ExperimentMembers
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExperimentMembers"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/members/{customerID}/node-id/{nodeID}:
+    get:
+      summary: Lists ExperimentMembers whose NodeID matches the provided value
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+        - name: nodeID
+          in: path
+          required: true
+          description: The NodeID value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of ExperimentMembers
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExperimentMembers"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/members/{customerID}/experiment-id/{experimentID}:
+    get:
+      summary: Lists ExperimentMembers whose ExperimentID matches the provided value
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value used to filter the list
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of ExperimentMembers
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExperimentMembers"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/metrics/{customerID}/{experimentID}/{id}:
+    get:
+      summary: Get info about a specific ExperimentMetric
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value of the ExperimentMetric to retrieve
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value of the ExperimentMetric to retrieve
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the ExperimentMetric to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: ExperimentMetric Object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExperimentMetric"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    put:
+      summary: Update a specific ExperimentMetric
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value of the ExperimentMetric to update
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value of the ExperimentMetric to update
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the ExperimentMetric to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: result of the updateExperimentMetric operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    delete:
+      summary: Delete a specific ExperimentMetric
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value of the ExperimentMetric to delete
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value of the ExperimentMetric to delete
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the ExperimentMetric to delete
+          schema:
+            type: string
+      responses:
+        "200":
+          description: result of the deleteExperimentMetric operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/metrics/{customerID}/experiment-id/{experimentID}:
+    get:
+      summary: Lists ExperimentMetrics whose ExperimentID matches the provided value
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value used to filter the list
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of ExperimentMetrics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExperimentMetrics"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+    post:
+      summary: Create a new ExperimentMetric
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value of the new ExperimentMetric
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value of the new ExperimentMetric
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: result of the createExperimentMetric operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/data/{customerID}/e/{experimentID}/{resolution}/{timeRange}:
+    get:
+      summary: Queries and returns Experiment time series data about this ExperimentID
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value used to filter the data
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value used to filter the data
+          schema:
+            type: string
+        - name: resolution
+          in: path
+          required: true
+          description: The resolution value used to filter the data
+          schema:
+            type: string
+        - name: timeRange
+          in: path
+          required: true
+          description: The timeRange value used to filter the data
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of ExperimentMetrics
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/data/{customerID}/e/{experimentID}/g/{groupID}/{resolution}/{timeRange}:
+    get:
+      summary: Queries and returns Experiment time series data about this ExperimentID and GroupID
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value used to filter the data
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value used to filter the data
+          schema:
+            type: string
+        - name: groupID
+          in: path
+          required: true
+          description: The groupID value used to filter the data
+          schema:
+            type: string
+        - name: resolution
+          in: path
+          required: true
+          description: The resolution value used to filter the data
+          schema:
+            type: string
+        - name: timeRange
+          in: path
+          required: true
+          description: The timeRange value used to filter the data
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of ExperimentMetrics
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/data/{customerID}/e/{experimentID}/run:
+    post:
+      summary: requests the experiment data be re-run
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value used to identify the experiment
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value used to identify the experiment
+          schema:
+            type: string
+      responses:
+        "204":
+          description: "204 response"
+          content: {}
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /experiments/data/{customerID}/e/{experimentID}/regenerate:
+    post:
+      summary: requests the experiment data be fully regenerated
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value used to identify the experiment
+          schema:
+            type: string
+        - name: experimentID
+          in: path
+          required: true
+          description: The ExperimentID value used to identify the experiment
+          schema:
+            type: string
+      responses:
+        "204":
+          description: "204 response"
+          content: {}
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Experiments
+  /dashboards/{owner}/{id}:
+    get:
+      summary: Get info about a specific Dashboard
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          description: The Owner value of the Dashboard to retrieve
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the Dashboard to retrieve
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Dashboard Object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dashboard"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+    put:
+      summary: Update a specific Dashboard
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          description: The Owner value of the Dashboard to update
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the Dashboard to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: result of the updateDashboard operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+    delete:
+      summary: Delete a specific Dashboard
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          description: The Owner value of the Dashboard to delete
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the Dashboard to delete
+          schema:
+            type: string
+      responses:
+        "204":
+          description: No Content
+          content: {}
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+    post:
+      summary: Undelete a specific Dashboard
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          description: The Owner value of the Dashboard to delete
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the Dashboard to delete
+          schema:
+            type: string
+      responses:
+        "204":
+          description: No Content
+          content: {}
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+  /dashboards/owner/{owner}:
+    get:
+      summary: Lists Dashboards whose Owner matches the provided value
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          description: The Owner value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of Dashboards
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dashboards"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+    post:
+      summary: Create a new Dashboard
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          description: The Owner value of the new Dashboard
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: result of the createDashboard operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+  /dashboards/owner/{owner}/feature-id/{featureID}:
+    get:
+      summary: Lists Dashboards whose owner and FeatureID matches the provided value
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          description: The Owner value used to filter the list
+          schema:
+            type: string
+        - name: featureID
+          in: path
+          required: true
+          description: The FeatureID value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of Dashboards
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Dashboards"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+  /access/manage/{customerID}:
+    get:
+      summary: Lists users with access to this customer
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of Customer Access
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+  /access/manage/{customerID}/{accessUser}/{accessLevel}:
+    post:
+      summary: grants access to accessUser for customerID
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID where access is being updated
+          schema:
+            type: string
+        - name: accessUser
+          in: path
+          required: true
+          description: The email address of the user whose access is being updated
+          schema:
+            type: string
+        - name: accessLevel
+          in: path
+          required: true
+          description: The level of access being set for the accessUser subject
+          schema:
+            type: string
+      responses:
+        "201":
+          description: A 'Created' response with no content
+          content: {}
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+  /access/manage/{customerID}/{accessUser}:
+    delete:
+      summary: removes user access from this customerID
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The customerID where access is being removed
+          schema:
+            type: string
+        - name: accessUser
+          in: path
+          required: true
+          description: The email address of the user whose access is being removed
+          schema:
+            type: string
+      responses:
+        "204":
+          description: A 'No Content' response
+          content: {}
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+  /customer-inputs/{customerID}/{id}:
+    put:
+      summary: Update a specific CustomerInput
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the CustomerInput to update
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the CustomerInput to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: result of the updateCustomerInput operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+    delete:
+      summary: Delete a specific CustomerInput
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the CustomerInput to delete
+          schema:
+            type: string
+        - name: id
+          in: path
+          required: true
+          description: The ID value of the CustomerInput to delete
+          schema:
+            type: string
+      responses:
+        "200":
+          description: result of the deleteCustomerInput operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+  /customer-inputs/customer/{customerID}:
+    get:
+      summary: Lists CustomerInputs whose CustomerID matches the provided value
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of CustomerInputs
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerInputs"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+    post:
+      summary: Create a new CustomerInput
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value of the new CustomerInput
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "201":
+          description: result of the createCustomerInput operation
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+  /customer-inputs/customer/{customerID}/category/{category}:
+    get:
+      summary: Lists CustomerInputs whose CustomerID and Category match the provided values
+      parameters:
+        - name: customerID
+          in: path
+          required: true
+          description: The CustomerID value used to filter the list
+          schema:
+            type: string
+        - name: category
+          in: path
+          required: true
+          description: The Category value used to filter the list
+          schema:
+            type: string
+      responses:
+        "200":
+          description: An array of CustomerInputs
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CustomerInputs"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
+  /customer-inputs/categories:
+    get:
+      summary: Lists available categories for customer inputs
+      responses:
+        "200":
+          description: An array of CustomerInputs
+          content:
+            application/json:
+              schema:
+                type: "string"
+      security:
+        - publicApiAuthorizer: []
+      tags:
+        - Dashboards
 components:
   schemas:
     ReportRun:
@@ -1424,6 +2456,218 @@ components:
         isTestMessage:
           type: boolean
           description: set to true if the feedback is a test submission that the customer success team can ignore
+    Experiment:
+      required:
+        - customerID
+        - id
+      properties:
+        customerID:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+        notes:
+          type: string
+        startTime:
+          type: integer
+          format: int64
+        endTime:
+          type: integer
+          format: int64
+        notice:
+          type: string
+        noticeLevel:
+          type: string
+        noticeExpires:
+          type: number
+          format: int64
+        positionFilter:
+          type: string
+    Experiments:
+      type: array
+      items:
+        $ref: "#/components/schemas/Experiment"
+    ExperimentGroup:
+      required:
+        - experimentID
+        - id
+      properties:
+        experimentID:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        groupType:
+          type: string
+        notes:
+          type: string
+        icon:
+          type: string
+        color:
+          type: string
+    ExperimentGroups:
+      type: array
+      items:
+        $ref: "#/components/schemas/ExperimentGroup"
+    ExperimentMember:
+      required:
+        - groupID
+        - nodeID
+      properties:
+        groupID:
+          type: string
+        nodeID:
+          type: string
+        experimentID:
+          type: string
+        color:
+          type: string
+    ExperimentMembers:
+      type: array
+      items:
+        $ref: "#/components/schemas/ExperimentMember"
+    ExperimentMetric:
+      required:
+        - experimentID
+        - id
+      properties:
+        experimentID:
+          type: string
+        id:
+          type: string
+        metricID:
+          type: string
+        statistic:
+          type: string
+        resolution:
+          type: integer
+          format: int64
+    ExperimentMetrics:
+      type: array
+      items:
+        $ref: "#/components/schemas/ExperimentMetric"
+    Dashboard:
+      required:
+        - owner
+        - id
+      properties:
+        id:
+          type: string
+        owner:
+          type: string
+        feature:
+          type: string
+        featureID:
+          type: string
+        description:
+          type: string
+        notes:
+          type: string
+        notice:
+          type: string
+          description: is a temporary, meaningful message the user should see about this dashboard
+        noticeLevel:
+          type: string
+          description: indicates optional severity of either info, warning, error, success
+        status:
+          type: string
+        order:
+          type: integer
+          format: int64
+        dataField0:
+          type: string
+          description: Data for Live Dashboard version
+        dataField1:
+          type: string
+          description: Data for Dashboard Rollback Version 1
+        dataField2:
+          type: string
+          description: Data for Dashboard Rollback Version 2
+        dataField3:
+          type: string
+          description: Data for Dashboard Rollback Version 3
+        dataField4:
+          type: string
+          description: Data for Dashboard Rollback Version 4
+        dataField5:
+          type: string
+          description: Data for Dashboard Rollback Version 5
+        dataField6:
+          type: string
+          description: Data for Dashboard Rollback Version 6
+        dataField7:
+          type: string
+          description: Data for Dashboard Rollback Version 7
+        dataField8:
+          type: string
+          description: Data for Dashboard Rollback Version 8
+        dataField9:
+          type: string
+          description: Data for Dashboard Rollback Version 9
+    Dashboards:
+      type: array
+      items:
+        $ref: "#/components/schemas/Dashboard"
+    CustomerInput:
+      required:
+        - customerID
+        - id
+      properties:
+        customerID:
+          type: string
+        id:
+          type: string
+        category:
+          type: string
+    CustomerInputs:
+      type: array
+      items:
+        $ref: "#/components/schemas/CustomerInput"
+    PreSignedURLResponse:
+      type: object
+      required:
+        - url
+        - file
+      properties:
+        uploadUrl:
+          type: string
+          format: uri
+          description: >
+            Presigned PUT URL for uploading the file to S3, including query
+            parameters (e.g. X-Amz-Algorithm, X-Amz-Signature).
+          example: >-
+            https://agdata-example-bucket-abcd1234.s3.us-east-1.amazonaws.com/uploads/customer/portal/1781702810/filename.csv?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=...
+        url:
+          type: string
+          format: uri
+          description: >
+            Canonical S3 object URL with optional query parameters for pre-signed GET
+          example: >-
+            https://agdata-example-bucket-abcd1234.s3.us-east-1.amazonaws.com/uploads/customer/portal/1781702810/filename.csv
+        file:
+          type: string
+          description: Base filename of the object key (final path segment).
+          example: filename.csv
+    CustomerFile:
+      properties:
+        customerID:
+          type: string
+        id:
+          type: string
+        description:
+          type: string
+        filename:
+          type: string
+        s3URL:
+          type: string
+    CustomerFiles:
+      type: array
+      items:
+        $ref: "#/components/schemas/CustomerFile"
   securitySchemes:
     publicApiAuthorizer:
       #

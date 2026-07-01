@@ -574,6 +574,10 @@ The URL for alerts is <https://api.agrology.ag/v2/alerts/customer/{customerID}>
 }
 ```
 
+## Accessing Files from Responses
+
+Some API response bodies have fields that provide internet file locations, such as `s3://bucket-name.domain.com/path/to/file.txt`. These require a multi-step process to access securely with temporary / pre-signed credentials. To download a file, call the fileserver endpoint, providing the file location path in the `file` query parameter (`/filserver/customer/<customerID>?file=/path/to/file.txt`) to receive the pre-signed URL for downloading the file. The file query parameter must be properly urlencoded.
+
 ## OpenAPI Specification
 
 **Note:** The Agrology API's OpenAPI specification is under development. It may include endpoints that are not documented above. Response Schemas currently lack data typing and are subject to change.
