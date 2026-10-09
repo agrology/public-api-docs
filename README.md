@@ -369,7 +369,7 @@ All time Series Data (Historical Ground-Truth, Predictions and Synthetics) are i
 
 ## Accessing Historical Weather Service Data
 
-Historical Weather Service data is provided by <https://tomorrow.io>.
+Historical Weather Service data comes from the US National Weather Service (<https://www.weather.gov>) for US sites and MET Norway (<https://api.met.no>, CC BY 4.0) for other sites. Data before October 2026 was provided by Tomorrow.io.
 
 ### Retrieve List of Metrics in Historical Weather Service Data
 
@@ -485,7 +485,7 @@ Microclimate Predictions data is in the standard Time Series format (see [above]
 
 ## Accessing Weather Service Predictions
 
-Weather Service Predictions are supplied by <https://tomorrow.io>.
+Weather Service Predictions come from the US National Weather Service (<https://www.weather.gov>) for US sites and MET Norway (<https://api.met.no>, CC BY 4.0) for other sites.
 
 ### Retrieve List of Metrics in Weather Service Predictions
 
