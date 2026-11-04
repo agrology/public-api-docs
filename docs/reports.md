@@ -26,7 +26,8 @@ deleting and running need Editor access.
 
 A report needs `scope`, `timeRange` and `reportFormat` to produce anything,
 and `targetID` unless `scope` is `customer`. This one emails a PDF covering
-the last 7 days of one site every Monday at 07:30:
+the last 7 days of one site every Monday, with `cadenceHour` 7 and
+`cadenceMinute` 30:
 
 ```bash
 curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \

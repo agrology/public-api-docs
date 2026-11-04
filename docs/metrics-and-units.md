@@ -146,7 +146,7 @@ Pick the row by the aggregation the server applied, which is not always the
   `responseVersion` 2.0, on experiment and summary responses, or at 2.2 on weather and microclimate predictions
   and synthetics below calendar-month resolution. There the values are
   bucket sums with `resolution` and raw without it (see
-  [`statistic`](timeseries.md)).
+  [`statistic`](timeseries.md#bucket-the-data)).
 - At 2.0, `resolution=2592000` gives raw values for every statistic.
 - An experiment column combines two aggregations. Use the raw-value rule when
   both are mean, median, min, max or rawValue (ignoring case); otherwise show

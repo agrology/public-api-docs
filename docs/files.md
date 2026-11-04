@@ -31,7 +31,7 @@ curl -G -H "Authorization: Bearer $ACCESS_TOKEN" \
 ```json
 {
   "url": "https://example-bucket.s3.amazonaws.com/reports/0b6d1f3e-7a2c-4d58-9e11-6f3a2b8c4d70/north-vineyard-summary.pdf?X-Amz-Expires=900&X-Amz-Signature=...",
-  "file": "summary.pdf"
+  "file": "north-vineyard-summary.pdf"
 }
 ```
 

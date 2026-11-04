@@ -191,7 +191,8 @@ so parse error bodies defensively:
   that fails validation). Many operations also answer 400 when something
   fails on Agrology's side after validation, such as a database error.
 - **401**: no valid credential, or no access to what you asked for. A valid
-  credential with no customer or site grants also gets 401. An expired token
+  credential with no customer or site grants gets 401 from most operations
+  (`GET /sites` answers `[]` instead). An expired token
   gives `{"code": 401, "message": "the incoming token has expired"}`, but
   other 401 bodies are not valid JSON, so read a 401 body as text.
 - **302**: any response over 5,000,000 bytes is uploaded to S3 and answered

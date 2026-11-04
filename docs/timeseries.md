@@ -85,7 +85,8 @@ formats. Two more forms matter here:
 
 - On predictions, an empty end means the last stored forecast point, not
   now, and a relative time with a `+` prefix is in the future: `now-+2d`.
-  Past forecast times are left out unless you add `showPast=1`.
+  Past forecast times are left out unless you add `showPast=1`, except with
+  `newest`, which can return a past point.
 - `newest` returns the latest-dated sample of each series. On site
   timeseries it looks at samples from 24 hours ago onwards, and a series with
   nothing in that window is left out. On predictions the latest-dated sample

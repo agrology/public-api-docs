@@ -299,7 +299,8 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
   `MultiPolygon`. `geometry` is absent for a site with no boundary or a node
   with no latitude or longitude.
 - `role` on a site feature is your role at the site.
-- `classification` (the customer's classification) appears only on customer
+- `classification` (the customer's classification) is a field of the
+  collection itself, not of a feature, and appears only on customer
   collections.
 - `lastMessage` is in epoch milliseconds.
 
