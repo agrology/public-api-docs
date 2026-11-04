@@ -94,6 +94,7 @@ Trimmed to one metric and three of its options:
     "isBeta": true,
     "unitOptions": [
       {"id": "tCPerHaDay", "label": "t C/ha/day", "factor": 1.2011e-7},
+      {"id": "tonCPerAcDay", "label": "tons C/acre/day", "factor": 5.357981714887136e-8},
       {"id": "umolCO2PerM2S", "label": "µmol CO₂/m²/s", "factor": 0.000011574074074074073, "rateOnly": true},
       {"id": "umolCO2PerM2Day", "label": "µmol CO₂/m²/day", "factor": 1}
     ],

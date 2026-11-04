@@ -29,7 +29,8 @@ Every request needs one of two credentials. A request with neither gets a
 - **API key.** Ask Agrology staff for access. `GET /apikey-access` shows
   whether you have it. `POST /apikey` rotates your key and returns the new
   one once, so store it straight away; the previous key can keep working for
-  about 10 minutes afterwards. The **Rotate API Key** button in the portal's
+  about 10 minutes afterwards. Check `status` in the answer: a failed
+  rotation is also a 200, with `"status": "error"`. The **Rotate API Key** button in the portal's
   user menu does the same.
 
   ```bash
@@ -134,7 +135,8 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 }
 ```
 
-Values are in the units under `metrics`, whatever the site's display units.
+Values are in the units under `metrics` (at 2.2; pest and disease has no
+`metrics`), whatever the site's display units.
 The [guides](docs/) cover the other areas.
 
 ## Time ranges

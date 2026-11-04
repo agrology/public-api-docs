@@ -58,7 +58,8 @@ Weather forecasts currently reach about 3 days ahead for US sites, and a
 little less elsewhere.
 
 The 2.1 and 2.2 responses name the source in `request.source`, for example
-`historical/ground-truth` or `predictions/weather`.
+`historical/ground-truth` or `predictions/weather`; summaries have no
+`request`.
 
 ## Ordering
 
@@ -149,7 +150,7 @@ statistic. At 2.1 and 2.2:
 | --- | --- | --- |
 | `mean`, `sum`, `min`, `max` | yes | yes |
 | `median`, `geomean`, `varsamp`, `stddevsamp`, `varpop`, `stddevpop` | no: 400 | yes |
-| `runningTotal` | yes | yes |
+| `runningTotal` | yes, except at 2.2 on weather and microclimate predictions and synthetics, which give bucket sums | yes |
 
 `runningTotal` sums each bucket and accumulates across buckets. Without
 `resolution` it accumulates the raw samples. It accumulates only on 2.1-style
@@ -225,7 +226,8 @@ moves position and device type to `devices`. `request` echoes the request.
 }
 ```
 
-**2.2** adds `metrics`, with each metric's units, and trims `request`.
+**2.2** adds `metrics`, with each metric's units (except on pest and disease
+and summaries), and trims `request`.
 
 <!-- schema: TimeseriesV22 -->
 ```json
@@ -314,7 +316,7 @@ forecast rows.
 
 ```bash
 curl -H "Authorization: Bearer $ACCESS_TOKEN" \
-  "https://api.agrology.ag/v2/summaries/microclimate/customer/acme-farms?metrics=airTemp&step=3600&count=2&afterCount=2&source=mc&responseVersion=2.2"
+  "https://api.agrology.ag/v2/summaries/microclimate/customer/acme-farms?metrics=airTemp&step=3600&count=2&afterCount=2&source=mc"
 ```
 
 | Parameter | Required | Meaning |
@@ -326,17 +328,18 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 | `afterStep` | no | seconds per `afterCount`, 3600 to 86400; defaults to `step` |
 | `source` | no | forecast source: `mc` (microclimate predictions, the default) or `ws` (weather forecasts) |
 
-The response carries the metric in `metric`, and has no `request`, `sites`
-or 2.2 `metrics`. Each sample is a step; a value with no data is `null`.
+Leave `responseVersion` at 2.0 for summaries: at 2.1 and 2.2, samples can
+land on the wrong node when the response has more than one node. The
+response carries the metric in `metric`, and has no `request` or `sites`. Each sample is a step; a value with no data is `null`.
 The example shows only the past rows.
 
-<!-- schema: TimeseriesV22 -->
+<!-- schema: TimeseriesV20 -->
 ```json
 {
   "status": "ok",
   "metric": {"id": "airTemp", "displayName": "Air Temperature", "units": "°C"},
-  "nodes": {
-    "3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17": {
+  "nodes": [
+    {
       "id": "3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17",
       "name": "Block 1 East",
       "samples": [
@@ -345,14 +348,14 @@ The example shows only the past rows.
         {"ts": 1793804400, "max": null, "min": null, "mean": null}
       ]
     }
-  }
+  ]
 }
 ```
 
 ## Download CSV
 
 `format=csv` gives CSV at response versions 2.0 and 2.1. At 2.2 the body is
-JSON whatever `format` says.
+JSON even with `format=csv`. A `format` other than `json` or `csv` is a 400.
 
 ```bash
 curl -H "Authorization: Bearer $ACCESS_TOKEN" \
