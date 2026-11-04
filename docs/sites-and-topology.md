@@ -293,7 +293,8 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 - `properties.elementType` says whether a feature is a `site` or a `node`.
   Site features carry the address, contact and unit fields and identify the
   site with `site`; node features carry `id`, the devices and the soil
-  fields.
+  fields. The examples below are trimmed; `GeoJSONProperties` in
+  [`openapi.yml`](../openapi.yml) lists every field.
 - **Geometry is `[long, lat]`**, as in RFC 7946. A node is a `Point`; a site
   is its boundary, a `Polygon` (`[[[long, lat], ...]]`) or a
   `MultiPolygon`. `geometry` is absent for a site with no boundary or a node

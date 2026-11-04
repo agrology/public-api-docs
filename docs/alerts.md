@@ -59,7 +59,9 @@ left out.
 - **`location.coordinates` is `[latitude, longitude]`**, the opposite order to
   GeoJSON, which this API's GeoJSON endpoints use.
 - **An alert with no position has `"location": {}`.** An alert at exactly 0°
-  latitude or longitude also loses its location.
+  latitude or longitude also loses its location. An alert for an area can
+  list it in `eventValues.points` instead, as the alert source sent the
+  points; their order is not converted.
 - **Several fields are never filled today:** `endTime`, `severity`,
   `certainty`, `urgency`, `distance` and `direction` are always left out, and
   `updateTime` is the same as `startTime`.

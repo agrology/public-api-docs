@@ -87,8 +87,10 @@ formats. Two more forms matter here:
   now, and a relative time with a `+` prefix is in the future: `now-+2d`.
   Past forecast times are left out unless you add `showPast=1`, except with
   `newest`, which can return a past point.
-- `newest` returns the latest-dated sample of each series. On site
-  timeseries it looks at samples from 24 hours ago onwards, and a series with
+- `newest` returns the latest-dated sample of each series. A series is one
+  node and metric; ground truth also splits by device and position, and
+  historical weather keeps one sample per node. On site timeseries,
+  predictions included, it looks at samples from 24 hours ago onwards, and a series with
   nothing in that window is left out. On predictions the latest-dated sample
   is the furthest-ahead forecast point while the series has future points,
   and its newest past point otherwise. On experiment data a series is one
@@ -326,6 +328,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 
 The response carries the metric in `metric`, and has no `request`, `sites`
 or 2.2 `metrics`. Each sample is a step; a value with no data is `null`.
+The example shows only the past rows.
 
 <!-- schema: TimeseriesV22 -->
 ```json
@@ -395,7 +398,8 @@ timeseries.
 - **Statistics the database lacks give a 400.** Below calendar-month
   resolution use only `mean`, `sum`, `min`, `max` or `runningTotal`;
   `median`, `geomean`, `varsamp`, `stddevsamp`, `varpop` and `stddevpop`
-  fail. At calendar months, `geomean` of a series with a zero or negative
+  fail. Pest and disease is the exception: it buckets only at calendar
+  months, so these give raw samples there instead of a 400. At calendar months, `geomean` of a series with a zero or negative
   value is also a 400.
 - **Summary parameter errors read oddly.** A missing or out-of-range `step`,
   `count`, `afterCount`, `afterStep` or `metrics` gives

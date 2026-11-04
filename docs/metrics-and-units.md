@@ -149,7 +149,7 @@ Pick the row by the aggregation the server applied, which is not always the
   [`statistic`](timeseries.md#bucket-the-data)).
 - At 2.0, `resolution=2592000` gives raw values for every statistic.
 - An experiment column combines two aggregations. Use the raw-value rule when
-  both are mean, median, min, max or rawValue (ignoring case); otherwise show
+  both are mean, median, min or max (ignoring case); otherwise show
   the stored value. A `runningTotal` set on the experiment metric does
   accumulate (see [Experiments](experiments.md)).
 

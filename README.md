@@ -44,7 +44,9 @@ Three requests take you from a credential to sensor data. The examples use a
 bearer token; with an API key, send `x-api-key: $API_KEY` instead. The
 responses below are trimmed and use example IDs.
 
-**1. Check the credential.**
+**1. Check the credential.** A credential with no customer or site grants
+yet also gets a 401 here, so if a token you just copied is refused, ask
+Agrology staff to check your access.
 
 ```bash
 curl -H "Authorization: Bearer $ACCESS_TOKEN" https://api.agrology.ag/v2/whoami
@@ -150,9 +152,9 @@ Start and end times may use different formats:
   e.g. `+2d`.
 - **Epoch seconds:** exactly 10 digits, e.g. `1618203722`.
 - **Epoch milliseconds:** exactly 13 digits, e.g. `1618203722000`.
-- **UTC to the minute:** `yyyyMMddhhmm`, exactly 12 digits starting with
+- **UTC to the minute:** `yyyyMMddHHmm` (24-hour), exactly 12 digits starting with
   `20`, e.g. `202108010000` (1 Aug 2021 at midnight UTC).
-- **UTC to the second:** `yyyyMMddhhmmss`, exactly 14 digits starting with
+- **UTC to the second:** `yyyyMMddHHmmss` (24-hour), exactly 14 digits starting with
   `20`, e.g. `20210801052530` (1 Aug 2021 at 05:25:30 UTC).
 
 Examples:
@@ -221,18 +223,14 @@ aggregated values and the defaults for imperial and metric users.
 
 ## Weather data sources
 
-Historical weather comes from the US National Weather Service
-(<https://www.weather.gov>) for US sites and MET Norway
+Historical weather and weather forecasts come from the US National Weather
+Service (<https://www.weather.gov>) for US sites and MET Norway
 (<https://api.met.no>, licensed under CC BY 4.0,
-<https://creativecommons.org/licenses/by/4.0/>) for other sites. Canadian
-sites: past hours from Environment and Climate Change Canada stations (Data
-Source: Environment and Climate Change Canada). Data from before the switch
-in early October 2026 (about 6 October) was provided by Tomorrow.io.
-
-Weather forecasts come from the US National Weather Service
-(<https://www.weather.gov>) for US sites and MET Norway
-(<https://api.met.no>, licensed under CC BY 4.0,
-<https://creativecommons.org/licenses/by/4.0/>) for other sites.
+<https://creativecommons.org/licenses/by/4.0/>) for other sites. For
+Canadian sites, past hours come from Environment and Climate Change Canada
+stations (Data Source: Environment and Climate Change Canada). Historical
+weather from before the switch in early October 2026 (about 6 October) was
+provided by Tomorrow.io.
 
 ## Endpoints
 
