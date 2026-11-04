@@ -51,8 +51,27 @@ ground truth has a device and device-type list; see
 | Synthetics | `/synthetics/microclimate` | synthetic microclimate metrics for past times |
 | Microclimate summaries | `/summaries/microclimate/customer` | max, min and mean of one metric, past and forecast, for every site of a customer |
 
+Historical weather comes from the US National Weather Service
+(<https://www.weather.gov>) for US sites and MET Norway
+(<https://api.met.no>, licensed under CC BY 4.0,
+<https://creativecommons.org/licenses/by/4.0/>) for other sites. Canadian
+sites: past hours from Environment and Climate Change Canada stations (Data
+Source: Environment and Climate Change Canada). Data from before the switch
+in early October 2026 (about 6 October) was provided by Tomorrow.io.
+
+Weather forecasts come from the US National Weather Service
+(<https://www.weather.gov>) for US sites and MET Norway
+(<https://api.met.no>, licensed under CC BY 4.0,
+<https://creativecommons.org/licenses/by/4.0/>) for other sites.
+
 The 2.1 and 2.2 responses name the source in `request.source`, for example
 `historical/ground-truth` or `predictions/weather`.
+
+## Ordering
+
+Samples are grouped by node and ordered by time, oldest first. Nodes can come
+in any order, and the order is not guaranteed to be the same across
+requests.
 
 ## Scopes
 
@@ -77,7 +96,9 @@ formats. Two more forms matter here:
 - `newest` returns the latest-dated sample of each series. On site
   timeseries it looks at samples from 24 hours ago onwards, and a series with
   nothing in that window is left out. On predictions the latest-dated sample
-  is the furthest-ahead forecast point.
+  is the furthest-ahead forecast point while the series has future points,
+  and its newest past point otherwise. On experiment data a series is one
+  experiment group, with no time limit.
 
 ## Read ground truth
 
@@ -160,8 +181,8 @@ two hourly samples from one device on node `3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17
       "id": "3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17",
       "name": "Block 1 East",
       "samples": [
-        {"ts": 1762261200, "dev": "0004a30b001c2d3e", "position": "Canopy", "deviceType": "gV2", "airTemp": 14.2, "humidity": 71.5},
-        {"ts": 1762264800, "dev": "0004a30b001c2d3e", "position": "Canopy", "deviceType": "gV2", "airTemp": 16.8, "humidity": 63.0}
+        {"ts": 1793797200, "dev": "0004a30b001c2d3e", "position": "Canopy", "deviceType": "gV2", "airTemp": 14.2, "humidity": 71.5},
+        {"ts": 1793800800, "dev": "0004a30b001c2d3e", "position": "Canopy", "deviceType": "gV2", "airTemp": 16.8, "humidity": 63.0}
       ]
     }
   ]
@@ -176,7 +197,7 @@ moves position and device type to `devices`. `request` echoes the request.
 {
   "status": "ok",
   "request": {
-    "requestTime": 1762268400,
+    "requestTime": 1793804400,
     "source": "historical/ground-truth",
     "siteId": "north-vineyard",
     "nodeId": "3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17",
@@ -197,8 +218,8 @@ moves position and device type to `devices`. `request` echoes the request.
       "name": "Block 1 East",
       "siteId": "north-vineyard",
       "samples": [
-        {"dev": "0004a30b001c2d3e", "ts": 1762261200, "d": {"airTemp": 14.2, "humidity": 71.5}},
-        {"dev": "0004a30b001c2d3e", "ts": 1762264800, "d": {"airTemp": 16.8, "humidity": 63.0}}
+        {"dev": "0004a30b001c2d3e", "ts": 1793797200, "d": {"airTemp": 14.2, "humidity": 71.5}},
+        {"dev": "0004a30b001c2d3e", "ts": 1793800800, "d": {"airTemp": 16.8, "humidity": 63.0}}
       ]
     }
   }
@@ -212,7 +233,7 @@ moves position and device type to `devices`. `request` echoes the request.
 {
   "status": "ok",
   "request": {
-    "requestTime": 1762268400,
+    "requestTime": 1793804400,
     "source": "historical/ground-truth",
     "timeRange": "2h-",
     "format": "json",
@@ -234,8 +255,8 @@ moves position and device type to `devices`. `request` echoes the request.
       "name": "Block 1 East",
       "siteId": "north-vineyard",
       "samples": [
-        {"dev": "0004a30b001c2d3e", "ts": 1762261200, "d": {"airTemp": 14.2, "humidity": 71.5}},
-        {"dev": "0004a30b001c2d3e", "ts": 1762264800, "d": {"airTemp": 16.8, "humidity": 63.0}}
+        {"dev": "0004a30b001c2d3e", "ts": 1793797200, "d": {"airTemp": 14.2, "humidity": 71.5}},
+        {"dev": "0004a30b001c2d3e", "ts": 1793800800, "d": {"airTemp": 16.8, "humidity": 63.0}}
       ]
     }
   }
@@ -261,7 +282,7 @@ samples at 2.2, except at calendar-month resolution:
 {
   "status": "ok",
   "request": {
-    "requestTime": 1762268400,
+    "requestTime": 1793804400,
     "source": "predictions/microclimate",
     "format": "json",
     "responseVersion": "2.2"
@@ -278,8 +299,8 @@ samples at 2.2, except at calendar-month resolution:
       "name": "Block 1 East",
       "siteId": "north-vineyard",
       "samples": [
-        {"ts": 1762272000, "airTemp": 18.4},
-        {"ts": 1762275600, "airTemp": 19.1}
+        {"ts": 1793808000, "airTemp": 18.4},
+        {"ts": 1793811600, "airTemp": 19.1}
       ]
     }
   }
@@ -319,9 +340,9 @@ or 2.2 `metrics`. Each sample is a step; a value with no data is `null`.
       "id": "3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17",
       "name": "Block 1 East",
       "samples": [
-        {"ts": 1762261200, "max": 15.1, "min": 13.6, "mean": 14.2},
-        {"ts": 1762264800, "max": 17.3, "min": 15.0, "mean": 16.8},
-        {"ts": 1762268400, "max": null, "min": null, "mean": null}
+        {"ts": 1793797200, "max": 15.1, "min": 13.6, "mean": 14.2},
+        {"ts": 1793800800, "max": 17.3, "min": 15.0, "mean": 16.8},
+        {"ts": 1793804400, "max": null, "min": null, "mean": null}
       ]
     }
   }

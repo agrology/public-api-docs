@@ -34,7 +34,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
     "addedBy": "owner@example.com",
     "lastModifiedBy": "owner@example.com",
     "creationDate": 1748736000,
-    "lastModified": 1755205200
+    "lastModified": 1786741200
   }
 ]
 ```
@@ -72,4 +72,6 @@ A `204` means it is gone, including when the user had no access to remove.
 - **A 400 from a grant does not mean nothing changed.** Creating the login
   runs alongside the grant, so if it fails the access may still be saved:
   list the access to check.
-- **Emails are stored in lower case.** Send them in lower case.
+- **Emails are stored in lower case.** The address in the path is lower-cased
+  before a grant or removal, so `Grower@Example.com` and `grower@example.com`
+  are the same user.

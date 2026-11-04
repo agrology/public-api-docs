@@ -152,7 +152,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://api.agrology.ag/v2/sites
     "displayUnits": "imperial",
     "sizeAcres": 40,
     "products": ["microclimate"],
-    "report_time": 1762259400,
+    "report_time": 1793795400,
     "hwMonitoringStatus": 1,
     "envMonitoringStatus": 1
   }
@@ -183,8 +183,8 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://api.agrology.ag/v2/nodes
     "crops": ["Cabernet Sauvignon"],
     "soilType": "loam",
     "activeSoilDepth": 0.6,
-    "lastForecastSync": 1762257600,
-    "lastWeatherSync": 1762257600
+    "lastForecastSync": 1793793600,
+    "lastWeatherSync": 1793793600
   },
   {
     "id": "8a2d5c71-0e3f-4b9a-b6d2-1c4e7f9a0b38",
@@ -194,8 +194,8 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://api.agrology.ag/v2/nodes
     "lat": 38.5109,
     "long": -122.4731,
     "crops": null,
-    "lastForecastSync": 1762257600,
-    "lastWeatherSync": 1762257600
+    "lastForecastSync": 1793793600,
+    "lastWeatherSync": 1793793600
   }
 ]
 ```
@@ -274,7 +274,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
             "model": "gV2",
             "deviceType": "gV2",
             "position": "Canopy",
-            "lastMessage": 1762259400000,
+            "lastMessage": 1793795400000,
             "needsMaintenance": false,
             "isMonitored": true
           }
@@ -332,7 +332,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
     "position": "Canopy",
     "deviceType": "gV2",
     "serial": "GV2-004512",
-    "reportTime": 1762259400000,
+    "reportTime": 1793795400000,
     "reportingStatus": "ok"
   },
   {
@@ -341,7 +341,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
     "position": "Soil Chamber",
     "deviceType": "smp",
     "serial": "SMP-001187",
-    "reportTime": 1762258800000,
+    "reportTime": 1793794800000,
     "reportingStatus": "ok"
   }
 ]

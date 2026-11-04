@@ -63,8 +63,8 @@ curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
   "description": "Cover crop trial",
   "status": "planned",
   "notes": "Block 1 East is the control, Block 2 West the trial.",
-  "startTime": 1762214400000,
-  "endTime": 1777766400000,
+  "startTime": 1793750400000,
+  "endTime": 1809302400000,
   "positionFilter": "Soil Chamber"
 }
 ```
@@ -152,18 +152,18 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
     "groupID": "a7c2e4f6-1b3d-4a5c-9e8f-0d2b4c6a8e10",
     "nodeID": "3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17",
     "experimentID": "3f8a1c2e-5b7d-4e9a-a1c3-7d2f6b8e0a41",
-    "createdAt": 1762260000,
+    "createdAt": 1793796000,
     "createdBy": "grower@example.com",
-    "lastModified": 1762260000,
+    "lastModified": 1793796000,
     "lastModifiedBy": "grower@example.com"
   },
   {
     "groupID": "c4e6a8b0-2d4f-4b6a-8c0e-1f3a5c7e9b21",
     "nodeID": "8a2d5c71-0e3f-4b9a-b6d2-1c4e7f9a0b38",
     "experimentID": "3f8a1c2e-5b7d-4e9a-a1c3-7d2f6b8e0a41",
-    "createdAt": 1762260060,
+    "createdAt": 1793796060,
     "createdBy": "grower@example.com",
-    "lastModified": 1762260060,
+    "lastModified": 1793796060,
     "lastModifiedBy": "grower@example.com"
   }
 ]
@@ -182,7 +182,7 @@ above) and a [time range](../README.md#time-ranges). The response is always
 
 ```bash
 curl -H "Authorization: Bearer $ACCESS_TOKEN" \
-  "https://api.agrology.ag/v2/experiments/data/acme-farms/e/3f8a1c2e-5b7d-4e9a-a1c3-7d2f6b8e0a41/86400/1762214400-1762473600"
+  "https://api.agrology.ag/v2/experiments/data/acme-farms/e/3f8a1c2e-5b7d-4e9a-a1c3-7d2f6b8e0a41/86400/1793750400-1794009600"
 ```
 
 <!-- schema: TimeseriesV22 -->
@@ -190,9 +190,9 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 {
   "status": "ok",
   "request": {
-    "requestTime": 1762480000,
+    "requestTime": 1794016000,
     "source": "rollups/experiments",
-    "timeRange": "1762214400-1762473600",
+    "timeRange": "1793750400-1794009600",
     "format": "json",
     "responseVersion": "2.2"
   },
@@ -210,17 +210,17 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
         "groupType": "control",
         "color": "#1f77b4",
         "data": {
-          "start": 1762214400,
-          "end": 1762387200,
+          "start": 1793750400,
+          "end": 1793923200,
           "resolution": 86400,
           "metrics": ["soilMoisture"],
           "nodeAggregators": ["mean"],
           "statistics": ["mean"],
           "columns": ["ts", "soilMoisture|mean|mean"],
           "rows": [
-            [1762214400, 31.2],
-            [1762300800, 30.8],
-            [1762387200, null]
+            [1793750400, 31.2],
+            [1793836800, 30.8],
+            [1793923200, null]
           ]
         }
       }

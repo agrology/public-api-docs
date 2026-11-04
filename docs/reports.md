@@ -89,7 +89,9 @@ curl -X POST -H "Authorization: Bearer $ACCESS_TOKEN" \
 ```
 
 The call returns as soon as the run starts, with the run's `id`. Check it
-until `status` is `success`:
+until `status` is `success`, and give up after a while: a run whose
+definition is invalid stays `new`, and no failure status is reported (see
+Gotchas).
 
 ```bash
 curl -H "Authorization: Bearer $ACCESS_TOKEN" \
@@ -101,14 +103,14 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 {
   "customerID": "acme-farms",
   "id": "0b6d1f3e-7a2c-4d58-9e11-6f3a2b8c4d70",
-  "ts": 1755205200,
+  "ts": 1786741200,
   "status": "success",
   "reportDefinitionID": "9d3b6a2f-4e1c-4f7a-8b0d-1c5e7a9f2b64",
   "executionTimeMS": 18432,
   "files": ["north-vineyard-summary.pdf"],
-  "createdAt": 1755205200,
+  "createdAt": 1786741200,
   "createdBy": "grower@example.com",
-  "lastModified": 1755205219,
+  "lastModified": 1786741219,
   "lastModifiedBy": "grower@example.com"
 }
 ```

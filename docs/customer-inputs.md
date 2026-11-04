@@ -102,9 +102,9 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
       "crop": "Cabernet Sauvignon",
       "yield": "4.2 t/acre"
     },
-    "createdAt": 1758207600,
+    "createdAt": 1789743600,
     "createdBy": "grower@example.com",
-    "lastModified": 1758207600,
+    "lastModified": 1789743600,
     "lastModifiedBy": "grower@example.com"
   }
 ]

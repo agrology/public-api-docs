@@ -18,8 +18,8 @@ https://api.agrology.ag/v2
 Every request needs one of two credentials. A request with neither gets a
 `401`.
 
-- **Bearer token.** Log in at <https://grower.agrology.ag/> and click your
-  username in the user menu to copy a token. Tokens expire 1 hour after they
+- **Bearer token.** Log in at <https://grower.agrology.ag/>, click your
+  username in the user menu, and click **Copy Access Token**. Tokens expire 1 hour after they
   are issued.
 
   ```bash
@@ -29,7 +29,8 @@ Every request needs one of two credentials. A request with neither gets a
 - **API key.** Ask Agrology staff for access. `GET /apikey-access` shows
   whether you have it. `POST /apikey` rotates your key and returns the new
   one once, so store it straight away; the previous key can keep working for
-  about 10 minutes afterwards.
+  about 10 minutes afterwards. The **Rotate API Key** button in the portal's
+  user menu does the same.
 
   ```bash
   curl -H "x-api-key: $API_KEY" https://api.agrology.ag/v2/whoami
@@ -101,7 +102,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 {
   "status": "ok",
   "request": {
-    "requestTime": 1762272000,
+    "requestTime": 1793808000,
     "source": "historical/ground-truth",
     "timeRange": "4h-",
     "format": "json",
@@ -123,8 +124,8 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
       "name": "Block 1 East",
       "siteId": "north-vineyard",
       "samples": [
-        {"dev": "0004a30b001c2d3e", "ts": 1762261200, "d": {"airTemp": 14.2, "humidity": 71.5}},
-        {"dev": "0004a30b001c2d3e", "ts": 1762264800, "d": {"airTemp": 16.8, "humidity": 63.0}}
+        {"dev": "0004a30b001c2d3e", "ts": 1793797200, "d": {"airTemp": 14.2, "humidity": 71.5}},
+        {"dev": "0004a30b001c2d3e", "ts": 1793800800, "d": {"airTemp": 16.8, "humidity": 63.0}}
       ]
     }
   }
@@ -216,6 +217,21 @@ other units it can be shown in, each with a `factor` and an optional
 `offset`: for raw values, `display = value × factor + offset`.
 [Metrics and units](docs/metrics-and-units.md) covers the rules for
 aggregated values and the defaults for imperial and metric users.
+
+## Weather data sources
+
+Historical weather comes from the US National Weather Service
+(<https://www.weather.gov>) for US sites and MET Norway
+(<https://api.met.no>, licensed under CC BY 4.0,
+<https://creativecommons.org/licenses/by/4.0/>) for other sites. Canadian
+sites: past hours from Environment and Climate Change Canada stations (Data
+Source: Environment and Climate Change Canada). Data from before the switch
+in early October 2026 (about 6 October) was provided by Tomorrow.io.
+
+Weather forecasts come from the US National Weather Service
+(<https://www.weather.gov>) for US sites and MET Norway
+(<https://api.met.no>, licensed under CC BY 4.0,
+<https://creativecommons.org/licenses/by/4.0/>) for other sites.
 
 ## Endpoints
 

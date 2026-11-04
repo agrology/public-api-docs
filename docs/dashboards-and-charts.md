@@ -92,9 +92,9 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
   "order": 1,
   "dataField0": "{\"panels\":[{\"metric\":\"airTemp\",\"nodeID\":\"3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17\"},{\"metric\":\"humidity\",\"nodeID\":\"8a2d5c71-0e3f-4b9a-b6d2-1c4e7f9a0b38\"}]}",
   "dataField1": "{\"panels\":[{\"metric\":\"airTemp\",\"nodeID\":\"3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17\"}]}",
-  "createdAt": 1762260000,
+  "createdAt": 1793796000,
   "createdBy": "grower@example.com",
-  "lastModified": 1762263600,
+  "lastModified": 1793799600,
   "lastModifiedBy": "grower@example.com"
 }
 ```
@@ -195,9 +195,9 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
     "folder": "North Vineyard",
     "definition": "{\"siteID\":\"north-vineyard\",\"nodeID\":\"3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17\",\"metric\":\"airTemp\",\"timeRange\":\"l7d\"}",
     "settings": "{\"chartType\":\"line\"}",
-    "createdAt": 1762260000,
+    "createdAt": 1793796000,
     "createdBy": "grower@example.com",
-    "lastModified": 1762260000,
+    "lastModified": 1793796000,
     "lastModifiedBy": "grower@example.com"
   }
 ]

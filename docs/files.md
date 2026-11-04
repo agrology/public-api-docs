@@ -59,8 +59,8 @@ curl -X PUT -G -H "Authorization: Bearer $ACCESS_TOKEN" \
 <!-- schema: PreSignedURLResponse -->
 ```json
 {
-  "uploadUrl": "https://example-bucket.s3.amazonaws.com/uploads/customer/portal/1755205200/soil-samples.csv?X-Amz-Expires=900&X-Amz-Signature=...",
-  "url": "https://example-bucket.s3.amazonaws.com/uploads/customer/portal/1755205200/soil-samples.csv",
+  "uploadUrl": "https://example-bucket.s3.amazonaws.com/uploads/customer/portal/1786741200/soil-samples.csv?X-Amz-Expires=900&X-Amz-Signature=...",
+  "url": "https://example-bucket.s3.amazonaws.com/uploads/customer/portal/1786741200/soil-samples.csv",
   "file": "soil-samples.csv"
 }
 ```
@@ -96,9 +96,9 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
     "imageHeight": 3024,
     "imageWidth": 4032,
     "visibleToCustomer": 1,
-    "createdAt": 1755205200,
+    "createdAt": 1786741200,
     "createdBy": "field.tech@example.com",
-    "lastModified": 1755205200,
+    "lastModified": 1786741200,
     "lastModifiedBy": "field.tech@example.com"
   }
 ]
