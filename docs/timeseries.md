@@ -49,20 +49,13 @@ ground truth has a device and device-type list; see
 | Microclimate predictions | `/predictions/microclimate` | Agrology's microclimate forecasts |
 | Pest and disease | `/predictions/pest-disease` | pest and disease predictions, under raw `pd`-prefixed metric keys |
 | Synthetics | `/synthetics/microclimate` | synthetic microclimate metrics for past times |
-| Microclimate summaries | `/summaries/microclimate/customer` | max, min and mean of one metric, past and forecast, for every site of a customer |
+| Microclimate summaries | `/summaries/microclimate/customer` | max, min and mean of one metric, past and forecast, for each node of a customer's sites |
 
-Historical weather comes from the US National Weather Service
-(<https://www.weather.gov>) for US sites and MET Norway
-(<https://api.met.no>, licensed under CC BY 4.0,
-<https://creativecommons.org/licenses/by/4.0/>) for other sites. Canadian
-sites: past hours from Environment and Climate Change Canada stations (Data
-Source: Environment and Climate Change Canada). Data from before the switch
-in early October 2026 (about 6 October) was provided by Tomorrow.io.
-
-Weather forecasts come from the US National Weather Service
-(<https://www.weather.gov>) for US sites and MET Norway
-(<https://api.met.no>, licensed under CC BY 4.0,
-<https://creativecommons.org/licenses/by/4.0/>) for other sites.
+Weather data comes from the US National Weather Service, MET Norway and
+Environment and Climate Change Canada; see
+[Weather data sources](../README.md#weather-data-sources) for the credits.
+Weather forecasts currently reach about 3 days ahead for US sites, and a
+little less elsewhere.
 
 The 2.1 and 2.2 responses name the source in `request.source`, for example
 `historical/ground-truth` or `predictions/weather`.
@@ -312,8 +305,8 @@ samples at 2.2, except at calendar-month resolution:
 
 ## Summarize a customer's sites
 
-The summary gives the maximum, minimum and mean of one metric for every site
-of the customer you can access: `count` + 1 past steps from sensors, then
+The summary gives the maximum, minimum and mean of one metric for each node
+at every site of the customer you can access, under `nodes`: `count` + 1 past steps from sensors, then
 forecast rows.
 
 ```bash

@@ -272,9 +272,9 @@ JSON.
   change on a `planned` experiment sets a `notice` saying a rebuild is
   pending, and the rebuild runs once the status is `ongoing`. On a
   `completed` experiment nothing runs it.
-- **Create groups before members and metrics.** The first rollup run of an
-  `ongoing` experiment consumes the build that create asked for, even with
-  no groups yet, and group writes do not ask again.
+- **Finish groups, members and metrics before setting `ongoing`.** The first
+  rollup run of an `ongoing` experiment consumes the build that create asked
+  for, even with no groups yet, and group writes do not ask again.
 - **Member writes need the node to be the customer's.** Adding or updating a
   member needs an active node at one of the customer's active sites, or you
   get a 404. Send `experimentID` in the body too, the same non-empty value as

@@ -142,15 +142,16 @@ Pick the row by the aggregation the server applied, which is not always the
 
 - Without a usable `resolution`, values are raw, unless `runningTotal`
   accumulated them.
-- `runningTotal` never accumulates at `responseVersion` 2.0, on experiment
-  and summary responses, or at 2.2 on weather and microclimate predictions
+- A `runningTotal` sent as the query `statistic` never accumulates at
+  `responseVersion` 2.0, on experiment and summary responses, or at 2.2 on weather and microclimate predictions
   and synthetics below calendar-month resolution. There the values are
   bucket sums with `resolution` and raw without it (see
   [`statistic`](timeseries.md)).
 - At 2.0, `resolution=2592000` gives raw values for every statistic.
 - An experiment column combines two aggregations. Use the raw-value rule when
-  both are mean, median, min or max (ignoring case); otherwise show the
-  stored value.
+  both are mean, median, min, max or rawValue (ignoring case); otherwise show
+  the stored value. A `runningTotal` set on the experiment metric does
+  accumulate (see [Experiments](experiments.md)).
 
 ### Temperature
 

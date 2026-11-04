@@ -23,14 +23,14 @@ Pass the file's path in storage as `file`, URL-encoded:
 
 ```bash
 curl -G -H "Authorization: Bearer $ACCESS_TOKEN" \
-  --data-urlencode "file=reports/0b6d1f3e/summary.pdf" \
+  --data-urlencode "file=reports/0b6d1f3e-7a2c-4d58-9e11-6f3a2b8c4d70/north-vineyard-summary.pdf" \
   https://api.agrology.ag/v2/fileserver/customer/acme-farms
 ```
 
 <!-- schema: PreSignedURLResponse -->
 ```json
 {
-  "url": "https://example-bucket.s3.amazonaws.com/reports/0b6d1f3e/summary.pdf?X-Amz-Expires=900&X-Amz-Signature=...",
+  "url": "https://example-bucket.s3.amazonaws.com/reports/0b6d1f3e-7a2c-4d58-9e11-6f3a2b8c4d70/north-vineyard-summary.pdf?X-Amz-Expires=900&X-Amz-Signature=...",
   "file": "summary.pdf"
 }
 ```

@@ -13,7 +13,7 @@ strings.
 | Method | Path | Summary |
 | --- | --- | --- |
 | `GET` | `/dashboards/owner/{owner}/feature-id/{featureID}` | List an owner's dashboards for a feature ([`listDashboardsByFeatureIDAndOwner`](../openapi.yml)) |
-| `GET` | `/dashboards/owner/{owner}` | List an owner's dashboards ([`listDashboardsByOwner`](../openapi.yml)) |
+| `GET` | `/dashboards/owner/{owner}` | List an owner's dashboards ([`listDashboardsByOwner`](../openapi.yml)); always 401 today, see Gotchas |
 | `POST` | `/dashboards/owner/{owner}` | Create a dashboard ([`createDashboard`](../openapi.yml)) |
 | `GET` | `/dashboards/{owner}/{id}` | Get a dashboard ([`showDashboard`](../openapi.yml)) |
 | `PUT` | `/dashboards/{owner}/{id}` | Update a dashboard ([`updateDashboard`](../openapi.yml)) |

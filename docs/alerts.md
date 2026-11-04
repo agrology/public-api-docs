@@ -1,7 +1,7 @@
 # Alerts
 
-Alerts are notices Agrology raises for a customer's sites: red flag and fire
-weather warnings, extreme temperature warnings, and Agrology notifications. The API
+Alerts are notices Agrology raises for a customer's sites: fires detected
+nearby, extreme temperature warnings, and Agrology notifications. The API
 returns the customer's active, unmuted alerts for the sites you can access.
 The response is shaped for an Apple push notification, so the list sits
 beside an `aps` block.
@@ -37,8 +37,8 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
       "sites": ["north-vineyard", "south-block"],
       "eventValues": {
         "origin": "Agrology",
-        "title": "Red Flag Warning",
-        "headline": "Red Flag Warning for North Vineyard until 8 PM PDT.",
+        "title": "Fire in Area",
+        "headline": "A fire has been detected 4 miles north of North Vineyard.",
         "location": {"type": "Point", "coordinates": [38.512, -122.471]}
       }
     }
