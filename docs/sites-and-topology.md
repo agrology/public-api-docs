@@ -146,7 +146,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://api.agrology.ag/v2/sites
     "siteClassification": "Site",
     "lat": 38.5121,
     "long": -122.4712,
-    "polygon": "-122.474,38.514;-122.469,38.514;-122.469,38.51;-122.474,38.514",
+    "polygon": "-122.474,38.514;-122.469,38.514;-122.469,38.51;-122.474,38.51;-122.474,38.514",
     "elevation": 52,
     "tz": "America/Los_Angeles",
     "displayUnits": "imperial",
@@ -255,7 +255,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
         "type": "Polygon",
         "coordinates": [[
           [-122.474, 38.514], [-122.469, 38.514], [-122.469, 38.51],
-          [-122.474, 38.514]
+          [-122.474, 38.51], [-122.474, 38.514]
         ]]
       }
     },

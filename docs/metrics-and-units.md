@@ -188,7 +188,7 @@ The unit system comes from the site: `units` on each site in
 
 <!-- schema: AccessSite -->
 ```json
-{"id": "north-vineyard", "displayName": "North Vineyard", "role": "viewer", "units": "imperial"}
+{"id": "north-vineyard", "displayName": "North Vineyard", "role": "editor", "units": "imperial"}
 ```
 
 For each metric you display:

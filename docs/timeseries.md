@@ -146,6 +146,9 @@ as if `resolution` were absent.
 unknown values also give `mean`. Without `resolution` it is ignored, except
 for `runningTotal`.
 
+At response version 2.0, `resolution=2592000` returns raw samples for every
+statistic. At 2.1 and 2.2:
+
 | `statistic` | Below calendar months | At calendar months |
 | --- | --- | --- |
 | `mean`, `sum`, `min`, `max` | yes | yes |
@@ -369,20 +372,8 @@ ts,dateTime,nodeId,nodeName,dev,deviceType,position,airTemp,humidity
 
 ## Large responses
 
-A response over 5,000,000 bytes is uploaded to S3 and answered with a 302.
-Follow `Location`, a presigned URL that expires after 1 hour. The body says
-the same:
-
-<!-- schema: RedirectBody -->
-```json
-{
-  "code": 302,
-  "message": "redirect",
-  "location": "https://example-bucket.s3.amazonaws.com/responses/abc123.json?X-Amz-Expires=3600&X-Amz-Signature=..."
-}
-```
-
-With `disableRedirects=1` the status is 200 but the body is still this
+A response over 5,000,000 bytes is answered with a 302 to a presigned URL;
+the [README](../README.md#errors) shows the body. With `disableRedirects=1` the status is 200 but the body is still this
 object, with `"code": 302`, so check for `location` before reading it as
 timeseries.
 
@@ -439,8 +430,8 @@ timeseries.
   keep the real node ID instead.
 - **`request` is missing at 2.0 and on summaries**, so `refID` is echoed
   only at 2.1 and 2.2, and never on summaries. At 2.2, `metrics` entries
-  have an empty `name`; look metrics up in `/metrics` for names and unit
-  options.
+  have an empty `name` except on experiment data; look metrics up in
+  `/metrics` for names and unit options.
 - **CSV is plain.** No `text/csv` Content-Type is sent, fields are not
   quoted (a comma in a node name shifts that row), and with no columns the
   body is empty.

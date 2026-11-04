@@ -104,6 +104,15 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
 ]
 ```
 
+To download a file from an `s3://` location such as `s3url`, pass its key,
+the path after the bucket name (`photos/install-north.jpg` here), URL-encoded,
+as `file` to `GET /fileserver/customer/{customerID}`:
+
+```bash
+curl -H "Authorization: Bearer $ACCESS_TOKEN" \
+  "https://api.agrology.ag/v2/fileserver/customer/acme-farms?file=photos%2Finstall-north.jpg"
+```
+
 ## Gotchas
 
 - **A URL is issued for any path.** The file is not checked, so a path that

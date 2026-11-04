@@ -185,7 +185,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" \
   "https://api.agrology.ag/v2/experiments/data/acme-farms/e/3f8a1c2e-5b7d-4e9a-a1c3-7d2f6b8e0a41/86400/1793750400-1794009600"
 ```
 
-<!-- schema: TimeseriesV22 -->
+<!-- schema: ExperimentData -->
 ```json
 {
   "status": "ok",

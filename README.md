@@ -74,7 +74,7 @@ curl -H "Authorization: Bearer $ACCESS_TOKEN" https://api.agrology.ag/v2/access
         "north-vineyard": {
           "id": "north-vineyard",
           "displayName": "North Vineyard",
-          "role": "viewer",
+          "role": "editor",
           "units": "imperial",
           "nodes": [
             {"id": "3f9c1e2a-7b4d-4c8e-9a21-5d6f0b8e4a17", "displayName": "Block 1 East"},
