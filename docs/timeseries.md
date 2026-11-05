@@ -131,16 +131,17 @@ curl -G -H "Authorization: Bearer $ACCESS_TOKEN" \
 `consolidateNodePositionMetrics=1` merges all of a node's devices at the same
 position into one series, keyed `<nodeID>-<positionID>` instead of by device
 ID. `<positionID>` is the position's numeric ID, not its name: the name is in
-the `position` field. A device with no known position is keyed `<nodeID>`
-alone and has no `position`, so do not split keys on the last `-`.
+the `position` field. Samples from a device with no known position have
+neither a device key nor a `position`, so they cannot be told apart by
+device.
 
 ## Bucket the data
 
 `resolution` is a bucket size in seconds: a positive divisor of 86400 (such
 as `900`, `3600` or `21600`) or a multiple of 86400. `2592000` means calendar
-months, at response versions 2.1 and 2.2. Other values are ignored, as if
-`resolution` were absent, except `0` and negative divisors of 86400 (see
-[Gotchas](#gotchas)).
+months, at response versions 2.1 and 2.2. Other whole numbers are ignored,
+as if `resolution` were absent, except `0` and negative divisors of 86400
+(see [Gotchas](#gotchas)).
 
 `statistic` says how samples in a bucket combine. The default is `mean`, and
 unknown values also give `mean`. Without `resolution` it is ignored, except
