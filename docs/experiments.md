@@ -304,7 +304,9 @@ JSON.
   `statistic` filter, and sets one even with no `statistic`. `runningTotal`
   as a `statistic` filter drops the filter.
 - **Not found is sometimes 400.** An unknown experiment ID on the experiment
-  operations is a 400 with `item does not exist`. On group, member and metric
-  operations an unknown experiment or group is a 404, but an unknown group,
-  member or metric ID under a valid parent is a 400 with `item does not
-  exist`.
+  operations is a 400 with `item does not exist`. Under an experiment, an
+  unknown parent in the path is a 404 and an unknown item is a 400 with `item
+  does not exist`: on group operations an unknown experiment is a 404 and an
+  unknown group a 400; on member operations an unknown experiment or group is
+  a 404 and a node that is not in the group a 400; on metric operations an
+  unknown experiment is a 404 and an unknown metric a 400.

@@ -2468,7 +2468,7 @@ paths:
     get:
       summary: List who has access to a customer
       description: >-
-        Customer-level grants only: users with access to single sites are not listed, and neither are `@agrology.ag` addresses. Needs Admin access to the customer.
+        Customer-level grants only: users with access to single sites are not listed, and neither are `@agrology.ag` addresses. Users need a customer-level Admin grant: Admin of one of the customer's sites is not enough.
       operationId: listCustomerAccess
       tags:
         - Access Management
@@ -2492,7 +2492,7 @@ paths:
     post:
       summary: Grant or change a user's access
       description: >-
-        Gives `accessUser` the access level `accessLevel` on the customer, replacing the level they had. No request body. A user who has no login gets one, but no invitation email is sent. Creating the login runs alongside the grant, so if it fails you get a 400 although the access may be saved: list the access to check. Needs Admin access to the customer.
+        Gives `accessUser` the access level `accessLevel` on the customer, replacing the level they had. No request body. A user who has no login gets one, but no invitation email is sent. Creating the login runs alongside the grant, so if it fails you get a 400 although the access may be saved: list the access to check. Users need a customer-level Admin grant: Admin of one of the customer's sites is not enough.
       operationId: createOrUpdateCustomerAccess
       tags:
         - Access Management
@@ -2526,7 +2526,7 @@ paths:
     delete:
       summary: Remove a user's access
       description: >-
-        Removes the user's customer-level access. Their site-level access and their login stay. Removing access the user does not have is also a 204. Needs Admin access to the customer.
+        Removes the user's customer-level access. Their site-level access and their login stay. Removing access the user does not have is also a 204. Users need a customer-level Admin grant: Admin of one of the customer's sites is not enough.
       operationId: deleteCustomerAccess
       tags:
         - Access Management
@@ -2738,7 +2738,7 @@ components:
       in: path
       required: true
       description: >-
-        `{start}-{end}`, or a single relative time with no end (`4h` is the same as `4h-`). An empty end means now, except on predictions, where it means the last stored forecast point. Each side is `now`; a relative time `<n>s`, `m`, `h`, `d` or `w` in the past (e.g. `6h`), or in the future with a `+` prefix (`+2d`, used by forecasts); epoch seconds (10 digits); epoch milliseconds (13 digits); or `20yyMMddhhmm` / `20yyMMddhhmmss` in UTC. The special value `newest` returns the latest-dated sample of each series, not a single sample. On site timeseries, predictions included, it considers samples from 24 hours ago onwards with no upper bound; a series with nothing in that window is left out. A series is one node and metric (ground truth also splits by device and position; historical weather keeps one sample per node). On predictions (weather, microclimate, pest & disease) the latest-dated sample is the furthest-ahead forecast point while the series has future points, and its newest past point otherwise. On experiment data a series is one experiment group, with no time limit. Examples: `4h`, `6h-4h`, `1d-now`, `1618203722-1618290149`, `202108010000-`, `newest`.
+        `{start}-{end}`, or a single relative time with no end (`4h` is the same as `4h-`). An empty end means now, except on predictions, where it means the last stored forecast point. Each side is `now`; a relative time `<n>s`, `m`, `h`, `d` or `w` in the past (e.g. `6h`), or in the future with a `+` prefix (`+2d`, used by forecasts); epoch seconds (10 digits); epoch milliseconds (13 digits); or `20yyMMddHHmm` / `20yyMMddHHmmss` in UTC (exactly 12 or 14 digits, with a 24-hour `HH`). The special value `newest` returns the latest-dated sample of each series, not a single sample. On site timeseries, predictions included, it considers samples from 24 hours ago onwards with no upper bound; a series with nothing in that window is left out. A series is one node and metric (ground truth also splits by device and position; historical weather keeps one sample per node). On predictions (weather, microclimate, pest & disease) the latest-dated sample is the furthest-ahead forecast point while the series has future points, and its newest past point otherwise. On experiment data a series is one experiment group, with no time limit. Examples: `4h`, `6h-4h`, `1d-now`, `1618203722-1618290149`, `202108010000-`, `newest`.
       schema:
         type: string
     Resolution:

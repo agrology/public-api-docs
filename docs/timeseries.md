@@ -130,7 +130,8 @@ curl -G -H "Authorization: Bearer $ACCESS_TOKEN" \
 
 `consolidateNodePositionMetrics=1` merges all of a node's devices at the same
 position into one series, keyed `<nodeID>-<positionID>` instead of by device
-ID.
+ID. `<positionID>` is the position's numeric ID, not its name: the name is in
+the `position` field.
 
 ## Bucket the data
 
@@ -397,7 +398,7 @@ timeseries.
   accumulates at 2.1 and 2.2. With `newest`, any other accepted `resolution`
   is a 400.
 - **Do not send `resolution=0`**: the request fails with a 502. Negative
-  values are not rejected and give undefined results.
+  divisors of 86400 are not rejected and give undefined results.
 - **Statistics the database lacks give a 400.** Below calendar-month
   resolution use only `mean`, `sum`, `min`, `max` or `runningTotal`;
   `median`, `geomean`, `varsamp`, `stddevsamp`, `varpop` and `stddevpop`
