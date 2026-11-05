@@ -307,8 +307,7 @@ JSON.
   operations is a 400 with `item does not exist`. On group and metric
   operations an unknown experiment is a 404, but an unknown group or metric
   ID is a 400 with `item does not exist`. On member operations an unknown
-  experiment or group is a 404, as is a node that fails the check in
-  [Member writes need the node to be the customer's](#gotchas); getting,
-  updating or deleting a member for a node that is not in the group is a 400
-  with `item does not exist`. Each operation in the [API reference](../openapi.yml)
-  lists its own cases.
+  experiment or group is a 404, as is a node that fails the member-write
+  check above; getting, updating or deleting a member for a node that is not
+  in the group is a 400 with `item does not exist`. Each operation in the
+  [API reference](../openapi.yml) lists its own cases.

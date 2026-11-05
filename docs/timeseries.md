@@ -139,9 +139,9 @@ device.
 
 `resolution` is a bucket size in seconds: a positive divisor of 86400 (such
 as `900`, `3600` or `21600`) or a multiple of 86400. `2592000` means calendar
-months, at response versions 2.1 and 2.2. Other whole numbers are ignored,
-as if `resolution` were absent, except `0` and negative divisors of 86400
-(see [Gotchas](#gotchas)).
+months, at response versions 2.1 and 2.2. Other whole numbers are ignored
+and leave the samples raw, even if you also send the alias `bucketSize`,
+except `0` and negative divisors of 86400 (see [Gotchas](#gotchas)).
 
 `statistic` says how samples in a bucket combine. The default is `mean`, and
 unknown values also give `mean`. Without `resolution` it is ignored, except
