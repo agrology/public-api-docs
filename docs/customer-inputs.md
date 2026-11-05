@@ -53,7 +53,7 @@ Each value's `type` says how to send it, always as a string or number:
 | `dateRange` | `"YYYY-MM-DD to YYYY-MM-DD"` |
 | `gps` | `"latitude, longitude"` |
 | `enum.string:A,B,C` | one of the listed values |
-| `s3file` | the `url` (not the `uploadUrl`) of a file you uploaded under `uploads/customer/portal/` in this customer's upload bucket (see [Files](files.md)) |
+| `s3file` | the `url` of a file you uploaded under `uploads/customer/portal/` in this customer's upload bucket (see [Files](files.md)). The `uploadUrl` is also accepted, but it is stored with its signature, which expires, so send `url` |
 
 ## Record an input
 
