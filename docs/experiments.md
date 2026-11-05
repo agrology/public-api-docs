@@ -304,7 +304,10 @@ JSON.
   `statistic` filter, and sets one even with no `statistic`. `runningTotal`
   as a `statistic` filter drops the filter.
 - **Not found is sometimes 400.** An unknown experiment ID on the experiment
-  operations is a 400 with `item does not exist`. On group, member and metric
-  operations an unknown experiment or group is a 404, but an unknown group,
-  member or metric ID under a valid parent is a 400 with `item does not
-  exist`.
+  operations is a 400 with `item does not exist`. On group and metric
+  operations an unknown experiment is a 404, but an unknown group or metric
+  ID is a 400 with `item does not exist`. On member operations an unknown
+  experiment or group is a 404, as is a node that fails the member-write
+  check above; getting, updating or deleting a member for a node that is not
+  in the group is a 400 with `item does not exist`. Each operation in the
+  [API reference](../openapi.yml) lists its own cases.
