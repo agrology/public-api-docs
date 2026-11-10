@@ -130,14 +130,18 @@ curl -G -H "Authorization: Bearer $ACCESS_TOKEN" \
 
 `consolidateNodePositionMetrics=1` merges all of a node's devices at the same
 position into one series, keyed `<nodeID>-<positionID>` instead of by device
-ID.
+ID. `<positionID>` is the position's numeric ID, not its name: the name is in
+the `position` field. Samples from a device with no known position have
+neither a device key nor a `position`, so they cannot be told apart by
+device.
 
 ## Bucket the data
 
 `resolution` is a bucket size in seconds: a positive divisor of 86400 (such
 as `900`, `3600` or `21600`) or a multiple of 86400. `2592000` means calendar
-months, at response versions 2.1 and 2.2. Other positive values are ignored,
-as if `resolution` were absent.
+months, at response versions 2.1 and 2.2. Other whole numbers are ignored
+and leave the samples raw, even if you also send the alias `bucketSize`,
+except `0` and negative divisors of 86400 (see [Gotchas](#gotchas)).
 
 `statistic` says how samples in a bucket combine. The default is `mean`, and
 unknown values also give `mean`. Without `resolution` it is ignored, except
@@ -397,7 +401,8 @@ timeseries.
   accumulates at 2.1 and 2.2. With `newest`, any other accepted `resolution`
   is a 400.
 - **Do not send `resolution=0`**: the request fails with a 502. Negative
-  values are not rejected and give undefined results.
+  divisors of 86400 are not rejected and give undefined results; other
+  negative values are ignored.
 - **Statistics the database lacks give a 400.** Below calendar-month
   resolution use only `mean`, `sum`, `min`, `max` or `runningTotal`;
   `median`, `geomean`, `varsamp`, `stddevsamp`, `varpop` and `stddevpop`

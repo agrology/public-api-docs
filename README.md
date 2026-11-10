@@ -159,6 +159,11 @@ Start and end times may use different formats:
 - **UTC to the second:** `yyyyMMddHHmmss` (24-hour), exactly 14 digits starting with
   `20`, e.g. `20210801052530` (1 Aug 2021 at 05:25:30 UTC).
 
+A `{start}-{end}` range is split at `-`, so neither time in it can carry a
+minus sign: `-6h-` and `-6h-4h` fail. A lone relative time may have one
+(`-6h` is the same as `6h`), but past relative times need no sign, so leave it
+out. `now` must be lower case; `newest` is matched in any case.
+
 Examples:
 
 | Range | Means |
